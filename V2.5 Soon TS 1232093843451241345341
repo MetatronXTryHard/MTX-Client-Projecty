@@ -4089,17 +4089,8 @@ end})
 end})
 
    local Toggle = DF:AddToggle({"Auto Random Fruit", false, function(value)
-    _G.Random_Auto = value
+    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Cousin","Buy")
    end})
-  spawn(function()
-    pcall(function()
-        while wait(.1) do
-            if _G.Random_Auto then
-                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Cousin","Buy")
-            end 
-        end
-    end)
-end)
    local Toggle = DF:AddToggle({"Tween to Fruit", false, function(value)
     _G.Tweenfruit = value
     StopTween(_G.Tweenfruit)
