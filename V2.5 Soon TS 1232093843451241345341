@@ -4996,8 +4996,9 @@ end)
 local Section = RD:AddSection("Raid | Options")
 
 local Toggle = RD:AddToggle({"Auto Raid", false, function(value)
-    _G.Auto_Dungeon = value
     _G.Auto_StartRaid = value
+    wait(5)
+    _G.Auto_Dungeon = value
     StopTween(_G.Auto_Dungeon)
 end})
 
@@ -5046,10 +5047,64 @@ game:GetService("RunService").RenderStepped:Connect(function()
         game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
     end
 end)
-
+local Toggle = RD:AddToggle({"Auto Phoenix Raid", false, function(value)
+    _G.Auto_StartRaid = value
+    wait(5)
+    _G.AutoAdvanceDungeon = value
+    StopTween(_G.AutoAdvanceDungeon)
+end})
+spawn(function()
+    while wait() do
+        if _G.AutoAdvanceDungeon then
+            pcall(function()
+                if game:GetService("Players").LocalPlayer.Character:FindFirstChild("Bird: Phoenix") or game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Bird: Phoenix") then
+                    if game.Players.LocalPlayer.Backpack:FindFirstChild(game.Players.LocalPlayer.Data.DevilFruit.Value) then
+                        if game.Players.LocalPlayer.Backpack:FindFirstChild(game.Players.LocalPlayer.Data.DevilFruit.Value).Level.Value >= 400 then
+                            topos(CFrame.new(-2812.76708984375, 254.803466796875, -12595.560546875))
+                            if (CFrame.new(-2812.76708984375, 254.803466796875, -12595.560546875).Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 10 then
+                                wait(1.5)
+                                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SickScientist","Check")
+                                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SickScientist","Heal")
+                            end
+                        end
+                    elseif game.Players.LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.Data.DevilFruit.Value) then
+                        if game.Players.LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.Data.DevilFruit.Value).Level.Value >= 400 then
+                            topos(CFrame.new(-2812.76708984375, 254.803466796875, -12595.560546875))
+                            if (CFrame.new(-2812.76708984375, 254.803466796875, -12595.560546875).Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 10 then
+                                wait(1.5)
+                                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SickScientist","Check")
+                                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SickScientist","Heal")
+                            end
+                        end
+                    end
+                end
+            end)
+        end
+    end
+end)
+spawn(function()
+    pcall(function()
+        while wait() do
+            if _G.AutoAdvanceDungeon and game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Timer.Visible == true then
+                local attackRadius = 250  -- ปรับระยะการทำลายตามต้องการ
+                sethiddenproperty(game:GetService("Players").LocalPlayer, "SimulationRadius", math.huge)
+                for _, v in pairs(game:GetService("Workspace").Enemies:GetDescendants()) do
+                    if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
+                        pcall(function()
+                            if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= attackRadius then
+                                v.Humanoid.Health = 0
+                                v.HumanoidRootPart.CanCollide = false
+                            end
+                        end)
+                    end
+                end
+            end
+        end
+    end)
+    end)
 local Dropdown = RD:AddDropdown({
     Name = "Chip Select",
-    Description = "Select the <font color='rgb(88, 101, 242)'>Number</font>",
+    Description = "Select the <font color='rgb(88, 101, 242)'>Chip To Buy</font>",
     Options = {"Flame", "Ice", "Quake", "Light", "Dark", "String", "Rumble", "Magma", "Human: Buddha", "Sand", "Bird: Phoenix", "Dough"},
     Default = "Flame",
     Flag = "Flame",
