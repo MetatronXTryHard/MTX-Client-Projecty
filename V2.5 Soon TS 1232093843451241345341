@@ -332,29 +332,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 local redzlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/RedzLibV5/main/Source.Lua"))()
 local Window = redzlib:MakeWindow({
   Title = "🥋 MTX Client | Blox Fruits 👑",
@@ -1575,7 +1552,7 @@ end)
                                         if v.Name == "Diablo [Lv. 1750]" or v.Name == "Deandre [Lv. 1750]" or v.Name == "Urban [Lv. 1750]" then
                                             repeat task.wait()
                                                 EquipTool(SelectWeapon)
-                                                Tween(v.HumanoidRootPart.CFrame * Farm_Mode)
+                                                topos(v.HumanoidRootPart.CFrame * Farm_Mode)
                                                 MonsterPosition = v.HumanoidRootPart.CFrame
                                                 v.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame
                                                 v.Humanoid.JumpPower = 0
@@ -1590,11 +1567,11 @@ end)
                                 end
                             else
                                 if game:GetService("ReplicatedStorage"):FindFirstChild("Diablo [Lv. 1750]") then
-                                    Tween(game:GetService("ReplicatedStorage"):FindFirstChild("Diablo [Lv. 1750]").HumanoidRootPart.CFrame * Farm_Mode)
+                                    topos(game:GetService("ReplicatedStorage"):FindFirstChild("Diablo [Lv. 1750]").HumanoidRootPart.CFrame * Farm_Mode)
                                 elseif game:GetService("ReplicatedStorage"):FindFirstChild("Deandre [Lv. 1750]") then
-                                    Tween(game:GetService("ReplicatedStorage"):FindFirstChild("Deandre [Lv. 1750]").HumanoidRootPart.CFrame * Farm_Mode)
+                                    topos(game:GetService("ReplicatedStorage"):FindFirstChild("Deandre [Lv. 1750]").HumanoidRootPart.CFrame * Farm_Mode)
                                 elseif game:GetService("ReplicatedStorage"):FindFirstChild("Urban [Lv. 1750]") then
-                                    Tween(game:GetService("ReplicatedStorage"):FindFirstChild("Urban [Lv. 1750]").HumanoidRootPart.CFrame * Farm_Mode)
+                                    topos(game:GetService("ReplicatedStorage"):FindFirstChild("Urban [Lv. 1750]").HumanoidRootPart.CFrame * Farm_Mode)
                                 end
                             end
                         end
@@ -1623,7 +1600,7 @@ end)
         if AutoCakePrince and v.Name == "Cake Prince [Lv. 2300] [Raid Boss]" and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
         repeat task.wait()
         EquipTool(SelectWeapon)
-        Tween(v.HumanoidRootPart.CFrame * Farm_Mode)
+        topos(v.HumanoidRootPart.CFrame * Farm_Mode)
         v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
         v.HumanoidRootPart.Transparency = 1
         v.Humanoid.JumpPower = 0
@@ -1640,7 +1617,7 @@ end)
         end
         else
          if game:GetService("Workspace").Map.CakeLoaf.BigMirror.Other.Transparency == 0 and (CFrame.new(-1990.672607421875, 4532.99951171875, -14973.6748046875).Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude >= 2000 then
-        Tween(CFrame.new(-2151.82153, 149.315704, -12404.9053))
+            topos(CFrame.new(-2151.82153, 149.315704, -12404.9053))
         end
         end
         else
@@ -1650,7 +1627,7 @@ end)
         if (v.Name == "Cookie Crafter [Lv. 2200]" or v.Name == "Cake Guard [Lv. 2225]" or v.Name == "Baking Staff [Lv. 2250]" or v.Name == "Head Baker [Lv. 2275]") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
         repeat task.wait()
         EquipTool(SelectWeapon)
-        Tween(v.HumanoidRootPart.CFrame * Farm_Mode)
+        topos(v.HumanoidRootPart.CFrame * Farm_Mode)
         v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
         v.HumanoidRootPart.Transparency = 1
         v.Humanoid.JumpPower = 0
@@ -1673,10 +1650,10 @@ end)
         BTP(cakepos)
         wait(3)
         elseif (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - cakepos.Position).Magnitude < 2000 then
-        Tween(cakepos)
+            topos(cakepos)
         end
         else
-         Tween(cakepos)
+            topos(cakepos)
         end
         end
         end
