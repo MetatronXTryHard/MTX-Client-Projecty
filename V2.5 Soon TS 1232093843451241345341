@@ -766,54 +766,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 local redzlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/RedzLibV5/main/Source.Lua"))()
 local Window = redzlib:MakeWindow({
   Title = "🥋 MTX Client Dev Build | Blox Fruits 👑",
@@ -3719,9 +3671,6 @@ end})
         end
     end)
 end)
-local Toggle = DF:AddToggle({"Auto Random Fruit", false, function(value)
-    _G.Random_Auto = value
-   end})
    local Toggle = DF:AddToggle({"Tween to Fruit", false, function(value)
     _G.Tweenfruit = value
     StopTween(_G.Tweenfruit)
@@ -3774,7 +3723,7 @@ local Toggle = DF:AddToggle({"Fruit Notification", false, function(value)
             for i,v in pairs(game.Workspace:GetChildren()) do
                 if string.find(v.Name, "Fruit") then
                     require(game:GetService("ReplicatedStorage").Notification).new("Fruit Spawn"):Display();
-                    wait()
+                    wait(5)
                     setthreadcontext(5)
                 end
             end
@@ -3921,8 +3870,8 @@ spawn(function()
 		 end
 	   end
     end)
-local Toggle = DF:AddToggle({"Auto Drop Fruit", false, function(value)
-    _G.DropFruit = value
+local Toggle = DF:AddToggle({"Auto Store Fruit", false, function(value)
+    _G.AutoStoreFruit = value
    end})
    spawn(function()
     while wait() do
