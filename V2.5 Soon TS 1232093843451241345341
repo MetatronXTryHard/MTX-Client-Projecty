@@ -730,25 +730,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 local redzlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/RedzLibV5/main/Source.Lua"))()
 local Window = redzlib:MakeWindow({
   Title = "🥋 MTX Client | Blox Fruits 👑",
@@ -4089,8 +4070,17 @@ end})
 end})
 
    local Toggle = DF:AddToggle({"Auto Random Fruit", false, function(value)
-    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Cousin","Buy")
+    _G.Random_Auto = value
    end})
+   spawn(function()
+    pcall(function()
+        while wait(.1) do
+            if _G.Random_Auto then
+                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Cousin","Buy")
+            end 
+        end
+    end)
+end)
    local Toggle = DF:AddToggle({"Tween to Fruit", false, function(value)
     _G.Tweenfruit = value
     StopTween(_G.Tweenfruit)
@@ -4147,7 +4137,7 @@ local Toggle = DF:AddToggle({"Fruit Notification", false, function(value)
             for i,v in pairs(game.Workspace:GetChildren()) do
                 if string.find(v.Name, "Fruit") then
                     require(game:GetService("ReplicatedStorage").Notification).new("Fruit Spawn"):Display();
-                    wait(5)
+                    wait(8)
                     setthreadcontext(5)
                 end
             end
