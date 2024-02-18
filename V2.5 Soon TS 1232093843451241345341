@@ -799,31 +799,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 local redzlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/RedzLibV5/main/Source.Lua"))()
 local Window = redzlib:MakeWindow({
   Title = "🥋 MTX Client Dev Build | Blox Fruits 👑",
@@ -1278,8 +1253,8 @@ while wait() do
 end
 end)
 end
-if World2 or World3 then
-local Section = F:AddSection({"Outhers Farm | Options"})
+if World3 then
+local Section = F:AddSection({"others Farm | Options"})
 end
 if World3 then
     local Dropdown = F:AddDropdown({
@@ -1495,7 +1470,18 @@ if World3 then
               end
           end
       end)
-
+      local Toggle = F:AddToggle({"Auto Random Surprise", false, function(value)
+        _G.Auto_Random_Bone = value
+      end})
+      spawn(function()
+        pcall(function()
+            while wait(.1) do
+                if _G.Auto_Random_Bone then    
+                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Bones","Buy",1,1)
+                end
+            end
+        end)
+    end)
     end
 ----/// Settings
 local Section = S:AddSection({"Setting Farm | Options"})
@@ -2011,6 +1997,71 @@ end)
   
       end
   
+      SF:AddToggle({
+        Name = "Auto Elite Hunter",
+        Default = _G.AutoFactory,
+        Callback = function(value )
+            _G.AutoElitehunter = value
+            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
+            StopTween(_G.AutoElitehunter)
+      end})
+      spawn(function()
+        while wait() do
+            if _G.AutoElitehunter and World3 then
+                pcall(function()
+                    local QuestTitle = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text
+                    if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false then
+                        repeat  wait()
+                            topos(CFrame.new(-5418.892578125, 313.74130249023, -2826.2260742188)) 
+                        until not _G.AutoElitehunter or (Vector3.new(-5418.892578125, 313.74130249023, -2826.2260742188)-game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 3
+                        if (Vector3.new(-5418.892578125, 313.74130249023, -2826.2260742188)-game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 3 then
+                            wait(1.1)
+                            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("EliteHunter")
+                            wait(0.5)
+                        end
+                    elseif game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
+                        if string.find(QuestTitle,"Diablo") or string.find(QuestTitle,"Deandre") or string.find(QuestTitle,"Urban") then
+                            if game:GetService("Workspace").Enemies:FindFirstChild("Diablo [Lv. 1750]") or game:GetService("Workspace").Enemies:FindFirstChild("Deandre [Lv. 1750]") or game:GetService("Workspace").Enemies:FindFirstChild("Urban [Lv. 1750]") then
+                                for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                                    if v.Name == "Diablo [Lv. 1750]" or v.Name == "Deandre [Lv. 1750]" or v.Name == "Urban [Lv. 1750]" then
+                                        if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
+                                            repeat task.wait()
+                                                AutoHaki()
+                                                EquipWeapon(_G.SelectWeapon)
+                                                v.HumanoidRootPart.CanCollide = false
+                                                v.Humanoid.WalkSpeed = 0
+                                                v.HumanoidRootPart.Size = Vector3.new(50,50,50)
+                                                topos(v.HumanoidRootPart.CFrame * CFrame.new(2,20,2))
+                                                game:GetService("VirtualUser"):CaptureController()
+                                                game:GetService("VirtualUser"):Button1Down(Vector2.new(1280,672))
+                                                sethiddenproperty(game:GetService("Players").LocalPlayer,"SimulationRadius",math.huge)
+                                            until _G.AutoElitehunter == false or v.Humanoid.Health <= 0 or not v.Parent
+                                        end
+                                    end
+                                end
+                            else
+                                if game:GetService("ReplicatedStorage"):FindFirstChild("Diablo [Lv. 1750]") then
+                                    topos(game:GetService("ReplicatedStorage"):FindFirstChild("Diablo [Lv. 1750]").HumanoidRootPart.CFrame * CFrame.new(2,20,2))
+                                elseif game:GetService("ReplicatedStorage"):FindFirstChild("Deandre [Lv. 1750]") then
+                                    topos(game:GetService("ReplicatedStorage"):FindFirstChild("Deandre [Lv. 1750]").HumanoidRootPart.CFrame * CFrame.new(2,20,2))
+                                elseif game:GetService("ReplicatedStorage"):FindFirstChild("Urban [Lv. 1750]") then
+                                    topos(game:GetService("ReplicatedStorage"):FindFirstChild("Urban [Lv. 1750]").HumanoidRootPart.CFrame * CFrame.new(2,20,2))
+                                else
+                                    if _G.AutoEliteHunterHop then
+                                        Hop()
+                                    else
+                                        topos(CFrame.new(-5418.892578125, 313.74130249023, -2826.2260742188))
+                                    end
+                                end
+                            end                    
+                        end
+                    end
+                end)
+            end
+        end
+    end)
+
+
   SF:AddToggle({
     Name = "Auto factory",
     Default = _G.AutoFactory,
@@ -2065,110 +2116,10 @@ end)
   
           end)
       
-  ----///Auto Legend swords
-      
-  SF:AddToggle({
-    Name = "Auto Legendary Swords",
-    Default = _G.AutoBuyLegendarySword,
-    Callback = function(v)
-      _G.AutoBuyLegendarySword = v
-      StopTween(_G.AutoBuyLegendarySword)
-  end})
-  
-  spawn(function()
-  
-          while wait() do
-  
-              if _G.AutoBuyLegendarySword then
-  
-                  pcall(function()
-  
-                      local args = {
-  
-                          [1] = "LegendarySwordDealer",
-  
-                          [2] = "1"
-  
-                      }
-  
-                      game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
-  
-                      local args = {
-  
-                          [1] = "LegendarySwordDealer",
-  
-                          [2] = "2"
-  
-                      }
-  
-                      game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
-  
-                      local args = {
-  
-                          [1] = "LegendarySwordDealer",
-  
-                          [2] = "3"
-  
-                      }
-  
-                      game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
-  
-                      if _G.AutoBuyLegendarySword_Hop and _G.AutoBuyLegendarySword and World2 then
-  
-                          wait(10)
-  
-                          Hop()
-  
-                      end
-  
-                  end)
-  
-              end 
-  
-          end
-  
-      end)
+ 
       
       
-  SF:AddToggle({
-    Name = "Auto Rengoku",
-    Deafult = _G.AutoRengoku,
-    Callback = function(v)
-      _G.AutoRengoku = v
-      StopTween(_G.AutoRengoku)
-  end})
-  spawn(function()
-    pcall(function()
-        while wait() do
-            if _G.AutoRengoku then
-                if game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Hidden Key") or game:GetService("Players").LocalPlayer.Character:FindFirstChild("Hidden Key") then
-                    EquipWeapon("Hidden Key")
-                    topos(CFrame.new(6571.1201171875, 299.23028564453, -6967.841796875))
-                elseif game:GetService("Workspace").Enemies:FindFirstChild("Snow Lurker") or game:GetService("Workspace").Enemies:FindFirstChild("Arctic Warrior") then
-                    for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-                        if (v.Name == "Snow Lurker" or v.Name == "Arctic Warrior") and v.Humanoid.Health > 0 then
-                            repeat task.wait()
-                                EquipWeapon(_G.SelectWeapon)
-                                AutoHaki()
-                                v.HumanoidRootPart.CanCollide = false
-                                v.HumanoidRootPart.Size = Vector3.new(50,50,50)
-                                RengokuMon = v.HumanoidRootPart.CFrame
-                                topos(v.HumanoidRootPart.CFrame * Pos)
-                                game:GetService'VirtualUser':CaptureController()
-                                game:GetService'VirtualUser':Button1Down(Vector2.new(1280, 672))
-                                StartRengokuMagnet = true
-                            until game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Hidden Key") or _G.AutoRengoku == false or not v.Parent or v.Humanoid.Health <= 0
-                            StartRengokuMagnet = false
-                        end
-                    end
-                else
-                    StartRengokuMagnet = false
-                    topos(CFrame.new(5439.716796875, 84.420944213867, -6715.1635742188))
-                end
-            end
-        end
-    end)
-end)
+
 ----/// Auto Bartilo Quest
 
 SF:AddToggle({
@@ -2955,8 +2906,6 @@ SF:AddToggle({
             end)
 
 local Section = SF:AddSection({"Auto Swords"})
-----/// Auto Canvandder
-
   ----/// Auto Saber
   SF:AddToggle({
     Name = "Auto Saber",
@@ -3187,6 +3136,109 @@ local Section = SF:AddSection({"Auto Swords"})
   
       end)
 
+    ----/// Auto Canvandder
+SF:AddToggle({
+    Name = "Auto Rengoku",
+    Deafult = _G.AutoRengoku,
+    Callback = function(v)
+      _G.AutoRengoku = v
+      StopTween(_G.AutoRengoku)
+  end})
+  spawn(function()
+    pcall(function()
+        while wait() do
+            if _G.AutoRengoku then
+                if game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Hidden Key") or game:GetService("Players").LocalPlayer.Character:FindFirstChild("Hidden Key") then
+                    EquipWeapon("Hidden Key")
+                    topos(CFrame.new(6571.1201171875, 299.23028564453, -6967.841796875))
+                elseif game:GetService("Workspace").Enemies:FindFirstChild("Snow Lurker") or game:GetService("Workspace").Enemies:FindFirstChild("Arctic Warrior") then
+                    for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                        if (v.Name == "Snow Lurker" or v.Name == "Arctic Warrior") and v.Humanoid.Health > 0 then
+                            repeat task.wait()
+                                EquipWeapon(_G.SelectWeapon)
+                                AutoHaki()
+                                v.HumanoidRootPart.CanCollide = false
+                                v.HumanoidRootPart.Size = Vector3.new(50,50,50)
+                                RengokuMon = v.HumanoidRootPart.CFrame
+                                topos(v.HumanoidRootPart.CFrame * Pos)
+                                game:GetService'VirtualUser':CaptureController()
+                                game:GetService'VirtualUser':Button1Down(Vector2.new(1280, 672))
+                                StartRengokuMagnet = true
+                            until game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Hidden Key") or _G.AutoRengoku == false or not v.Parent or v.Humanoid.Health <= 0
+                            StartRengokuMagnet = false
+                        end
+                    end
+                else
+                    StartRengokuMagnet = false
+                    topos(CFrame.new(5439.716796875, 84.420944213867, -6715.1635742188))
+                end
+            end
+        end
+    end)
+end)
+ ----///Auto Legend swords
+      
+ SF:AddToggle({
+    Name = "Auto Legendary Swords",
+    Default = _G.AutoBuyLegendarySword,
+    Callback = function(v)
+      _G.AutoBuyLegendarySword = v
+      StopTween(_G.AutoBuyLegendarySword)
+  end})
+  
+  spawn(function()
+  
+          while wait() do
+  
+              if _G.AutoBuyLegendarySword then
+  
+                  pcall(function()
+  
+                      local args = {
+  
+                          [1] = "LegendarySwordDealer",
+  
+                          [2] = "1"
+  
+                      }
+  
+                      game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+  
+                      local args = {
+  
+                          [1] = "LegendarySwordDealer",
+  
+                          [2] = "2"
+  
+                      }
+  
+                      game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+  
+                      local args = {
+  
+                          [1] = "LegendarySwordDealer",
+  
+                          [2] = "3"
+  
+                      }
+  
+                      game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+  
+                      if _G.AutoBuyLegendarySword_Hop and _G.AutoBuyLegendarySword and World2 then
+  
+                          wait(10)
+  
+                          Hop()
+  
+                      end
+  
+                  end)
+  
+              end 
+  
+          end
+  
+      end)
 SF:AddToggle({
     Name = "Auto Canvandder",
     Default = _G.AutoCanvandder,
@@ -5759,13 +5811,13 @@ elseif World3 then
                      if game:GetService("Lighting").Sky.MoonTextureId=="http://www.roblox.com/asset/?id=9709149431" then
                       CheckMoon:Set("🌕 : Full Moon 100%")
                      elseif game:GetService("Lighting").Sky.MoonTextureId=="http://www.roblox.com/asset/?id=9709149052" then
-                      CheckMoon:Set("🌖 : Full Moon 75%")
+                      CheckMoon:Set("🌖 : Soon Full Moon 75%")
                      elseif game:GetService("Lighting").Sky.MoonTextureId=="http://www.roblox.com/asset/?id=9709143733" then
-                      CheckMoon:Set("🌗 : Full Moon 50%")
+                      CheckMoon:Set("🌗 : Not Full Moon 50%")
                      elseif game:GetService("Lighting").Sky.MoonTextureId=="http://www.roblox.com/asset/?id=9709150401" then
-                      CheckMoon:Set("🌘 : Full Moon 25%")
+                      CheckMoon:Set("🌘 : Not Full Moon 25%")
                      elseif game:GetService("Lighting").Sky.MoonTextureId=="http://www.roblox.com/asset/?id=9709149680" then
-                      CheckMoon:Set("🌘: Full Moon 15%")
+                      CheckMoon:Set("🌘: Not Full Moon 15%")
                      else
                       CheckMoon:Set("❕ Wait For Moon...")
                      end
