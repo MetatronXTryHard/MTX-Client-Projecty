@@ -6854,7 +6854,7 @@ elseif World3 then
      spawn(function()
          pcall(function()
              while wait() do
-                 if game.Workspace._WorldOrigin.Locations:FindFirstChild('Frozen Dimension') then
+                 if game.Workspace._WorldOrigin.Locations:FindFirstChild("Frozen Dimension") then
                      FrozenIsland:Set("🟢 : Frozen Dimension Spawning")
                  else
                      FrozenIsland:Set("🔴 : Frozen Dimension Not Found.")
@@ -6886,7 +6886,7 @@ local Mirragecheck = SV:AddParagraph({"Miragem Check..."})
 spawn(function()
  pcall(function()
     while wait() do
-    if game.Workspace._WorldOrigin.Locations:FindFirstChild('Mirage Island') then
+    if game.Workspace._WorldOrigin.Locations:FindFirstChild("Mirage Island") then
         Mirragecheck:Set("🏝️ : Mirage Island is Spawning")
     else
         Mirragecheck:Set("❌ : Mirage Island Not Found.")
@@ -6898,7 +6898,7 @@ local KitsuneIsland = SV:AddParagraph({"Kitsune Island Check...", "🔴: Kitsune
 spawn(function()
     pcall(function()
         while wait() do
-            if game.Workspace._WorldOrigin.Locations:FindFirstChild('Kitsunen Island') then
+            if game.Workspace._WorldOrigin.Locations:FindFirstChild("Kitsune Island") then
                 KitsuneIsland:Set("🦊: Kitsune Island Spawn")
             else
                 KitsuneIsland:Set("🔴: Kitsune Island Not Spawn")
