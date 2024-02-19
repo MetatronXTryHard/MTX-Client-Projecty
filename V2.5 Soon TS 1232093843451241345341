@@ -826,6 +826,25 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 local redzlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/RedzLibV5/main/Source.Lua"))()
 
 local Window = redzlib:MakeWindow({
@@ -2352,7 +2371,7 @@ if World3 then
 
 F:AddToggle({
   Name = "Auto Elite Hunter",
-  Default = _G.AutoElitehunter
+  Default = _G.AutoElitehunter,
   Callback = function(v)
     _G.AutoElitehunter = v
 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
