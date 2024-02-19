@@ -8,29 +8,6 @@
 ██║╚██╔╝██║   ██║    ██╔██╗     ██║     ██║     ██║██╔══╝  ██║╚██╗██║   ██║   
 ██║ ╚═╝ ██║   ██║   ██╔╝ ██╗    ╚██████╗███████╗██║███████╗██║ ╚████║   ██║   
 ╚═╝     ╚═╝   ╚═╝   ╚═╝  ╚═╝     ╚═════╝╚══════╝╚═╝╚══════╝╚═╝  ╚═══╝   ╚═╝  
-                                                                                                      
-                                                                                                      
-█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗
-╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝                                                           
-
- █████╗ ███╗   ██╗████████╗██╗
-██╔══██╗████╗  ██║╚══██╔══╝██║
-███████║██╔██╗ ██║   ██║   ██║
-██╔══██║██║╚██╗██║   ██║   ██║
-██║  ██║██║ ╚████║   ██║   ██║
-╚═╝  ╚═╝╚═╝  ╚═══╝   ╚═╝   ╚═╝
-██╗███╗   ██╗██╗   ██╗ █████╗ ███████╗██╗ ██████╗ ███╗   ██╗███████╗    
-██║████╗  ██║██║   ██║██╔══██╗██╔════╝██║██╔═══██╗████╗  ██║██╔════╝    
-██║██╔██╗ ██║██║   ██║███████║███████╗██║██║   ██║██╔██╗ ██║███████╗    
-██║██║╚██╗██║╚██╗ ██╔╝██╔══██║╚════██║██║██║   ██║██║╚██╗██║╚════██║    
-██║██║ ╚████║ ╚████╔╝ ██║  ██║███████║██║╚██████╔╝██║ ╚████║███████║    
-╚═╝╚═╝  ╚═══╝  ╚═══╝  ╚═╝  ╚═╝╚══════╝╚═╝ ╚═════╝ ╚═╝  ╚═══╝╚══════╝    
-███████╗██╗   ██╗███████╗████████╗███████╗███╗   ███╗
-██╔════╝╚██╗ ██╔╝██╔════╝╚══██╔══╝██╔════╝████╗ ████║
-███████╗ ╚████╔╝ ███████╗   ██║   █████╗  ██╔████╔██║
-╚════██║  ╚██╔╝  ╚════██║   ██║   ██╔══╝  ██║╚██╔╝██║
-███████║   ██║   ███████║   ██║   ███████╗██║ ╚═╝ ██║
-╚══════╝   ╚═╝   ╚══════╝   ╚═╝   ╚══════╝╚═╝     ╚═╝
 
                 This script has been licensed using Luauth
             Unauthorized distribution of this script is forbidden.
@@ -39,7 +16,31 @@
             every single script that has been licensed with Luauth
 
         Luauth v2.5 for Roblox, #1 lua whitelisting system by Federal#9999
-]]
+--]]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -6849,7 +6850,7 @@ elseif World3 then
     end})
  end
 
-      local Section = SV:AddSection({"Server Stats | Checks"})
+    local Section = SV:AddSection({"Server Stats | Checks"})
      local FrozenIsland = SV:AddParagraph({"Frozen Island Check..."})  
      spawn(function()
          pcall(function()
@@ -6857,12 +6858,12 @@ elseif World3 then
                  if game.Workspace._WorldOrigin.Locations:FindFirstChild("Frozen Dimension") then
                      FrozenIsland:Set("🟢 : Frozen Dimension Spawning")
                  else
-                     FrozenIsland:Set("🔴 : Frozen Dimension Not Found.")
+                     FrozenIsland:Set("❌ : Frozen Dimension Not Found.")
                  end
              end
          end)
      end)
-     local CheckMoon = SV:AddParagraph({"Moon Check...", "🔴: Moon Not Found."})    
+     local CheckMoon = SV:AddParagraph({"Moon Check...", "❌ : Moon Not Found."})    
      task.spawn(function()
              while task.wait() do
                  pcall(function()
@@ -6875,7 +6876,7 @@ elseif World3 then
                      elseif game:GetService("Lighting").Sky.MoonTextureId=="http://www.roblox.com/asset/?id=9709150401" then
                       CheckMoon:Set("🌘 : Not Full Moon 25%")
                      elseif game:GetService("Lighting").Sky.MoonTextureId=="http://www.roblox.com/asset/?id=9709149680" then
-                      CheckMoon:Set("🌘: Not Full Moon 15%")
+                      CheckMoon:Set("🌘 : Not Full Moon 15%")
                      else
                       CheckMoon:Set("❕ Wait For Moon...")
                      end
@@ -6894,14 +6895,14 @@ spawn(function()
         end
     end)
 end)
-local KitsuneIsland = SV:AddParagraph({"Kitsune Island Check...", "🔴: Kitsune Island Not Found."})  
+local KitsuneIsland = SV:AddParagraph({"Kitsune Island Check...", "❌ : Kitsune Island Not Found."})  
 spawn(function()
     pcall(function()
         while wait() do
             if game.Workspace._WorldOrigin.Locations:FindFirstChild("Kitsune Island") then
-                KitsuneIsland:Set("🦊: Kitsune Island Spawn")
+                KitsuneIsland:Set("🦊 : Kitsune Island Spawn")
             else
-                KitsuneIsland:Set("🔴: Kitsune Island Not Spawn")
+                KitsuneIsland:Set("❌ : Kitsune Island Not Spawn")
             end
         end
     end)
@@ -6924,13 +6925,13 @@ spawn(function()
     while wait() do
         pcall(function()
             if string.len(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner")) == 88 then
-                MobKilled:Set("❌: Defeat "..string.sub(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner"),39,41))
+                MobKilled:Set("❌ : Defeat "..string.sub(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner"),39,41))
             elseif string.len(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner")) == 87 then
-                MobKilled:Set("❌: Defeat "..string.sub(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner"),39,40))
+                MobKilled:Set("❌ : Defeat "..string.sub(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner"),39,40))
             elseif string.len(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner")) == 86 then
-                MobKilled:Set("❌: Defeat "..string.sub(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner"),39,39))
+                MobKilled:Set("❌ : Defeat "..string.sub(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner"),39,39))
             else
-                MobKilled:Set("🟢: Boss Is Spawning")
+                MobKilled:Set("🟢 : Boss Is Spawning")
             end
         end)
     end
