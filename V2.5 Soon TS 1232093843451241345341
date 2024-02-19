@@ -24,7 +24,7 @@ end
 if isWhitelisted then
     print("Whitelisted")
 else
- player:Kick("saia veado")
+    
 end
 
 local ScreenGui1 = Instance.new("ScreenGui")
