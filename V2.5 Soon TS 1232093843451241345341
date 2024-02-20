@@ -2930,7 +2930,127 @@ end)
   
       end
   
- 
+      SF:AddToggle({
+        Name = "Auto Dummy Quest",
+        Default = _G.AutoArenaTrainer,
+        Callback = function(v)
+          _G.Namfon = v
+          StopTween(_G.Namfon)
+      end})
+      
+      local GGPos = CFrame.new(3757.732421875, 91.99540710449219, 253.65066528320312)
+      
+          spawn(function()
+      
+              while wait() do
+      
+                  if _G.Namfon and World3 then
+      
+                      pcall(function()
+      
+                          if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
+      
+                              if string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text,"Training Dummy") or string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text,"Training Dummy") or string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text,"Training Dummy") then
+      
+                                  if game:GetService("Workspace").Enemies:FindFirstChild("Training Dummy") or game:GetService("Workspace").Enemies:FindFirstChild("Training Dummy") or game:GetService("Workspace").Enemies:FindFirstChild("Training Dummy") then
+      
+                                      for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+      
+                                          if v.Name == "Training Dummy" or v.Name == "Training Dummy" or v.Name == "Training Dummy" then
+      
+                                              if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
+      
+                                                  repeat wait()
+      
+                                                      AutoHaki()
+      
+                                                      EquipWeapon(_G.SelectWeapon)
+      
+                                                      Fastattack = true
+      
+                                                      v.HumanoidRootPart.CanCollide = false
+      
+                                                      v.Humanoid.WalkSpeed = 0
+      
+                                                      v.HumanoidRootPart.Size = Vector3.new(50,50,50)
+      
+                                                      topos(v.HumanoidRootPart.CFrame * Pos)
+      
+                                                      game:GetService("VirtualUser"):CaptureController()
+      
+                                                      game:GetService("VirtualUser"):Button1Down(Vector2.new(1280,672))
+      
+                                                  until _G.Namfon == false or v.Humanoid.Health <= 0 or not v.Parent
+      
+                                                  Fastattack = false
+      
+                                              end
+      
+                                          end
+      
+                                      end
+      
+                                  else
+      
+                                  if BypassTP then
+      
+                                  if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - GGPos.Position).Magnitude > 1500 then
+      
+                                  BTP(GGPos)
+      
+                                  elseif (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - GGPos.Position).Magnitude < 1500 then
+      
+                                  topos(GGPos)
+      
+                                  end
+      
+                              else
+      
+                                  topos(GGPos)
+      
+                              end
+      
+                                      topos(CFrame.new(3757.732421875, 91.99540710449219, 253.65066528320312))
+      
+                                      if game:GetService("ReplicatedStorage"):FindFirstChild("Training Dummy") then
+      
+                                          topos(game:GetService("ReplicatedStorage"):FindFirstChild("Training Dummy").HumanoidRootPart.CFrame * MethodFarm)
+      
+                                      elseif game:GetService("ReplicatedStorage"):FindFirstChild("Training Dummy") then
+      
+                                          topos(game:GetService("ReplicatedStorage"):FindFirstChild("Training Dummy").HumanoidRootPart.CFrame * MethodFarm)
+      
+                                      elseif game:GetService("ReplicatedStorage"):FindFirstChild("Training Dummy") then
+      
+                                          topos(game:GetService("ReplicatedStorage"):FindFirstChild("Training Dummy").HumanoidRootPart.CFrame * MethodFarm)
+      
+                                      end
+      
+                                  end                    
+      
+                              end
+      
+                          else
+      
+                              if _G.AutoArenaTrainerHop and game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("ArenaTrainer") == "I don't have anything for you right now. Come back later." then
+      
+                                  hop()
+      
+                              else
+      
+                                  game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("ArenaTrainer")
+      
+                              end
+      
+                          end
+      
+                      end)
+      
+                  end
+      
+              end
+      
+          end)
 
 
   SF:AddToggle({
