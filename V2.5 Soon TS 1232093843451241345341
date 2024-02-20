@@ -3052,6 +3052,167 @@ end)
       
           end)
 
+          SF:AddToggle({
+            Name = "Turn Haki Pads For Admin Boss",
+            Default = False,
+            Callback = function(v)
+              _G.Open_Color_Haki = v
+              StopTween(Open_Color_Haki)
+          end})
+          
+          spawn(function()
+          
+              while wait(.3) do
+          
+                  pcall(function()
+          
+                      if _G.Open_Color_Haki then
+          
+                          game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("activateColor","Winter Sky")
+          
+                          wait(0.5)
+          
+                          repeat topos(CFrame.new(-5420.16602, 1084.9657, -2666.8208)) wait() 
+          
+                          until _G.StopTween == true or _G.Open_Color_Haki == false or (game.Players.LocalPlayer.Character.HumanoidRootPart.Position-Vector3.new(-5420.16602, 1084.9657, -2666.8208)).Magnitude <= 10
+          
+                          wait(0.5)
+          
+                          game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("activateColor","Pure Red")
+          
+                          wait(0.5)
+          
+                          repeat topos(CFrame.new(-5414.41357, 309.865753, -2212.45776)) wait() 
+          
+                          until _G.StopTween == true or _G.Open_Color_Haki == false or (game.Players.LocalPlayer.Character.HumanoidRootPart.Position-Vector3.new(-5414.41357, 309.865753, -2212.45776)).Magnitude <= 10
+          
+                          wait(0.5)
+          
+                          game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("activateColor","Snow White")
+          
+                          wait(0.5)
+          
+                          repeat topos(CFrame.new(-4971.47559, 331.565765, -3720.02954)) wait() 
+          
+                          until _G.StopTween == true or _G.Open_Color_Haki == false or (game.Players.LocalPlayer.Character.HumanoidRootPart.Position-Vector3.new(-4971.47559, 331.565765, -3720.02954)).Magnitude <= 10
+          
+                          wait(0.5)
+          
+                          game:GetService'VirtualUser':Button1Down(Vector2.new(1280,600))
+          
+                          wait(3)
+          
+                          game:GetService'VirtualUser':Button1Down(Vector2.new(1280,600))
+          
+                      end
+          
+                  end) 
+          
+              end
+          
+          end)
+
+          SF:AddToggle({
+            Name = "Auto Dragon Trident",
+            Default = _G.Auto_Dragon_Trident,
+            Callback = function(v)
+              _G.Auto_Dragon_Trident = v
+              StopTween(_G.Auto_Dragon_Trident)
+          end})
+          
+          local TridentPos = CFrame.new(-3914.830322265625, 123.29389190673828, -11516.8642578125)
+          
+              spawn(function()
+          
+                  while wait() do
+          
+                      if  _G.Auto_Dragon_Trident and World2 then
+          
+                          pcall(function()
+          
+                              if game:GetService("Workspace").Enemies:FindFirstChild("Tide Keeper") then
+          
+                                  for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+          
+                                      if v.Name == "Tide Keeper" then
+          
+                                          if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
+          
+                                              repeat task.wait()
+          
+                                                  AutoHaki()
+          
+                                                  EquipWeapon(_G.SelectWeapon)
+          
+                                                  v.HumanoidRootPart.CanCollide = false
+          
+                                                  v.Humanoid.WalkSpeed = 0
+          
+                                                  v.HumanoidRootPart.Size = Vector3.new(50,50,50)
+          
+                                                  topos(v.HumanoidRootPart.CFrame * Pos)
+          
+                                                  game:GetService("VirtualUser"):CaptureController()
+          
+                                                  game:GetService("VirtualUser"):Button1Down(Vector2.new(1280,672))
+          
+                                                  sethiddenproperty(game.Players.LocalPlayer,"SimulationRadius",math.huge)
+          
+                                              until not  _G.Auto_Dragon_Trident or not v.Parent or v.Humanoid.Health <= 0
+          
+                                          end
+          
+                                      end
+          
+                                  end
+          
+                              else
+          
+                              if BypassTP then
+          
+                              if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - TridentPos.Position).Magnitude > 1500 then
+          
+                              BTP(TridentPos)
+          
+                              elseif (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - TridentPos.Position).Magnitude < 1500 then
+          
+                              topos(TridentPos)
+          
+                              end
+          
+                          else
+          
+                              topos(TridentPos)
+          
+                          end
+          
+                              UnEquipWeapon(_G.SelectWeapon)
+          
+                              topos(CFrame.new(-3914.830322265625, 123.29389190673828, -11516.8642578125))
+          
+                                  if game:GetService("ReplicatedStorage"):FindFirstChild("Tide Keeper") then
+          
+                                      topos(game:GetService("ReplicatedStorage"):FindFirstChild("Tide Keeper").HumanoidRootPart.CFrame * CFrame.new(2,20,2))
+          
+                                  else
+          
+                                      if  _G.Auto_Dragon_Trident_Hop then
+          
+                                          Hop()
+          
+                                      end
+          
+                                  end
+          
+                              end
+          
+                          end)
+          
+                      end
+          
+                  end
+          
+              end)
 
   SF:AddToggle({
     Name = "Auto factory",
