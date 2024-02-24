@@ -1002,7 +1002,7 @@ local player = game.Players.LocalPlayer
 
 local allowedNames = {
 
-    "hydra0267",
+    "Hydra0267",
     "yAfrodit",
 
 } -- Adicione os nomes permitidos aqui
