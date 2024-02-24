@@ -998,28 +998,7 @@
 
 
 
-local player = game.Players.LocalPlayer
 
-local allowedNames = {
-
-    "Hydra0267",
-    "yAfrodit",
-
-} -- Adicione os nomes permitidos aqui
-
-local isWhitelisted = false
-for _, allowedName in pairs(allowedNames) do
-    if player.Name == allowedName then
-        isWhitelisted = true
-        break -- Se encontrou um nome permitido, sai do loop
-    end
-end
-
-if isWhitelisted then
-    print("Whitelisted")
-else
- player:Kick("Voce Não Esta Na Whitelist")
-end
 local redzlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/RedzLibV5/main/Source.Lua"))()
 local Window = redzlib:MakeWindow({
   Title = "🥋 MTX Client | Blox Fruits 👑",
