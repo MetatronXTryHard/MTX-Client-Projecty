@@ -309,47 +309,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 World1 = false
 World2 = false
 World3 = false
@@ -646,9 +605,15 @@ AutoFarm:Callback(function(value)
   StopTween(_G.AutoFarm)
 end)
 
-local selectedBoss = F:Dropdown('Select Boss', Boss, function(bosslist)
-    SelectBoss = bosslist
-end)
+F:AddDropdown({
+    Name = "Select Boss",
+    Description = "",
+    Options = {},
+    Default = "",
+    Callback = function(value)
+
+    end
+  })
 
 local Boss = {}
 for i,v in pairs(game.ReplicatedStorage:GetChildren()) do
