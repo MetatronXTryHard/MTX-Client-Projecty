@@ -273,98 +273,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 World1 = false
 World2 = false
 World3 = false
@@ -668,16 +576,18 @@ for _, name in pairs(Boss) do
     table.insert(bossCheck, name)
 end
 
-local AutoFarmBoss = F:AddDropdown({
+local BossName = F:AddDropdown({
     Name = "Boss Farm List",
     Description = "",
     Options = {""},
     Default = "",
-    Flag = "dropdown teste",
-    Callback = function(Value)
-      
+    Flag = "bossCheck",
+    Callback = function(value)
+        _G.SelectBoss = value
     end
   })
+
+
 
 local AutoAllBoss = F:AddToggle({
     Name = "Auto Farm All Boss",
