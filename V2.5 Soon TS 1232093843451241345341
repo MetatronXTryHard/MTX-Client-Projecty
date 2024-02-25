@@ -361,155 +361,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 World1 = false
 World2 = false
 World3 = false
@@ -840,12 +691,15 @@ local BossName = F:AddDropdown({
     end
 end
 end})
-
-local AutoBoss = F:AddButton({"Auto Farm Boss", false, function(value)
+local AutoBossFarm = F:AddToggle({
+    Name = "Auto Farm Boss",
+    Default = false
+  })
+  AutoBossFarm:Callback(function(value)
     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
     _G.AutoFarmBoss = value
-    StopTween(_G.AutoFarmBoss)
-end})
+    StopTween(_G.AutoFarmBoss)  
+end)
 spawn(function()
     while wait() do
         if _G.AutoFarmBoss then
