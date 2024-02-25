@@ -1,23 +1,11 @@
-loadstring(game:HttpGet(("https://raw.githubusercontent.com/REDzHUB/LibraryV2/main/redzLib")))()
-MakeWindow({
-  Hub = {
-    Title = "REDz HUB [BETA] : Blox Fruits",
-    Animation = "by : redz9999"
-  },
-  Key = {
-    KeySystem = false,
-    Title = "Key System",
-    Description = "",
-    KeyLink = "",
-    Keys = {"1234"},
-    Notifi = {
-      Notifications = true,
-      CorrectKey = "Running the Script...",
-      Incorrectkey = "The key is incorrect",
-      CopyKeyLink = "Copied to Clipboard"
-    }
-  }
+local redzlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/RedzLibV5/main/Source.Lua"))()
+local Window = redzlib:MakeWindow({
+  Title = "🥋 MTX Client | Blox Fruits 👑",
+  SubTitle = "By MTX Team | V2.5",
+  SaveFolder = "MTX Client Save.lua"
 })
+
+
 
 local Players = game:GetService("Players")
 local Player = Players.LocalPlayer
