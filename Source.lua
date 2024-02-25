@@ -6,7 +6,6 @@ local Window = redzlib:MakeWindow({
 })
 
 
-
 local Players = game:GetService("Players")
 local Player = Players.LocalPlayer
 local PlayerLevel = Player.Data.Level
