@@ -361,6 +361,53 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 World1 = false
 World2 = false
 World3 = false
@@ -659,37 +706,42 @@ end)
 
 local BossFarm = F:AddSection({"Boss"})
 
-local Boss = {}
+local bossCheck = {}
+local bossNames = {"The Gorilla King", "Bobby", "The Saw", "Yeti", "Mob Leader", "Vice Admiral", "Warden", "Chief Warden", "Swan", "Saber Expert", "Magma Admiral", "Fishman Lord", "Wysper", "Thunder God", "Cyborg", "Greybeard", "Diamond", "Jeremy", "Fajita", "Don Swan", "Smoke Admiral", "Awakened Ice Admiral", "Tide Keeper", "Order", "Darkbeard", "Cursed Captain", "Stone", "Island Empress", "Kilo Admiral", "Captain Elephant", "Beautiful Pirate", "Longma", "Cake Queen", "Soul Reaper", "Rip_Indra", "Cake Prince", "Dough King"}
 
-for i, v in pairs(game:GetService("ReplicatedStorage"):GetChildren()) do
-    if string.find(v.Name, "Boss") then
-        if v.Name == "Ice Admiral [Lv. 700] [Boss]" then
-            else
+if World1 or World2 or World3 then
+    for _, bossName in pairs(bossNames) do
+        if game:GetService("ReplicatedStorage"):FindFirstChild(bossName) then
             BossName:Set(v.Name)
-            BossName:Set(Boss, v.Name)-- Fixed By metatron_exe kkk
-            table.insert(Boss, v.Name)
+            BossName:Set(bossCheck, bossName)
+            table.insert(bossCheck, bossName)
         end
     end
 end
-local BossName = F:AddDropdown({
-    Name = "Select Farm Mode",
-    Description = "",
-    Options = {},
-    Default = "",
-    Callback = function(value)
-        _G.SelectBoss = value
-    end
-  })
+
+for _, name in pairs(Boss) do
+    BossName:Set(bossCheck, name)
+    table.insert(bossCheck, name)
+end
+
+local BossName = Main:AddDropdown("Select Boss", bossCheck, function(value)
+    _G.SelectBoss = value
+end)
+
 
   local Button = F:AddButton({"Refresh Boss", function()
-    BossName:Remove()
     BossName:Clear()
+    BossName:Remove()
+    wait(0.1)
     for i, v in pairs(game:GetService("ReplicatedStorage"):GetChildren()) do
-    if string.find(v.Name, "Boss") then
-        BossName:Set(v.Name)
-        BossName:Add(v.Name) 
+        if (v.Name == "rip_indra" or v.Name == "Ice Admiral")
+                            or (v.Name == "Saber Expert" or v.Name == "The Saw" or v.Name == "Greybeard" or v.Name == "Mob Leader" or v.Name == "The Gorilla King" or v.Name == "Bobby" or v.Name == "Yeti" or v.Name == "Vice Admiral" or v.Name == "Warden" or v.Name == "Chief Warden" or v.Name == "Swan" or v.Name == "Magma Admiral" or v.Name == "Fishman Lord" or v.Name == "Wysper" or v.Name == "Thunder God" or v.Name == "Cyborg")
+                            or (v.Name == "Don Swan" or v.Name == "Diamond" or v.Name == "Jeremy" or v.Name == "Fajita" or v.Name == "Smoke Admiral" or v.Name == "Awakened Ice Admiral" or v.Name == "Tide Keeper" or v.Name == "Order" or v.Name == "Darkbeard")
+                            or (v.Name == "Stone" or v.Name == "Island Empress" or v.Name == "Kilo Admiral" or v.Name == "Captain Elephant" or v.Name == "Beautiful Pirate" or v.Name == "Cake Queen" or v.Name == "rip_indra True Form" or v.Name == "Longma" or v.Name == "Soul Reaper" or v.Name == "Cake Prince" or v.Name == "Dough King") then
+            BossName:Add(v.Name)
+            BossName:Set(v.Name)
+        end
     end
-end
 end})
 local AutoBossFarm = F:AddToggle({
     Name = "Auto Farm Boss",
