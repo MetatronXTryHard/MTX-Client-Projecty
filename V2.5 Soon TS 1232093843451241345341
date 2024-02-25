@@ -408,6 +408,7 @@
 
 
 
+
 World1 = false
 World2 = false
 World3 = false
@@ -724,7 +725,7 @@ for _, name in pairs(Boss) do
     table.insert(bossCheck, name)
 end
 
-local BossName = Main:AddDropdown("Select Boss", bossCheck, function(value)
+local bossNames = Main:AddDropdown("Select Boss", bossCheck, function(value)
     _G.SelectBoss = value
 end)
 
