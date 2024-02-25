@@ -172,6 +172,86 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 World1 = false
 World2 = false
 World3 = false
@@ -7021,28 +7101,6 @@ SET:AddToggle({
   M:AddButton({"Darker + Purple", function()
     redzlib:SetTheme("Purple")
   end})
-
-  local FPS = M:AddToggle({
-    Name = "+FPS Lag Reduze",
-    Default = true
-  })
-  FPS:Callback(function(value)
-    setfpscap(9999999)
-    _G.Remove_trct = value
-    _G.RemoveHit = value
-    _G.KobenHeegeen = value
-    local effectContainer = game:GetService("ReplicatedStorage").Effect.Container
-  
-    local effectsToDestroy = {"Death", "Respawn"}
-    
-    for _, effectName in ipairs(effectsToDestroy) do
-        local effect = effectContainer:FindFirstChild(effectName)
-        if effect then
-            effect:Destroy()
-        end
-    end
-  end)
-
   --[[
     Tentando Roubar Meus Codigos?, ai Não mano
     Esse Codigo E Licenciado Vai Rolar Não,
