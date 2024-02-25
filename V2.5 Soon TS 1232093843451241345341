@@ -237,61 +237,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 World1 = false
 World2 = false
 World3 = false
@@ -302,13 +247,6 @@ elseif placeId == 4442272183 then
 World2 = true
 elseif placeId == 7449423635 then
 World3 = true
-end
-
-if getgenv().Key == "MTXClientOnTop" then
-	print"the key is correct, loaded authorized..."
-    print"By MTX Team | metatron_exe"
-else
-	game.Players.LocalPlayer:Kick("A key Que voce Colocou Não E Valida, Unauthorized...")
 end
 local redzlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/RedzLibV5/main/Source.Lua"))()
 local Window = redzlib:MakeWindow({
@@ -7107,10 +7045,10 @@ SET:AddToggle({
     Default = true
   })
   FPS:Callback(function(value)
-    setfpscap(9999999)
     _G.Remove_trct = value
     _G.RemoveHit = value
     _G.KobenHeegeen = value
+    setfpscap(9999999)
     local effectContainer = game:GetService("ReplicatedStorage").Effect.Container
   
     local effectsToDestroy = {"Death", "Respawn"}
