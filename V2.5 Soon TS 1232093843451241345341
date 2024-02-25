@@ -351,113 +351,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 World1 = false
 World2 = false
 World3 = false
@@ -768,11 +661,6 @@ for i, v in pairs(game:GetService("ReplicatedStorage"):GetChildren()) do
         end
     end
 end
-
-local BossName = F:AddDropdown("Select Boss",Boss,function(value)
-    _G.SelectBoss = value
-end)
-
 local BossName = F:AddDropdown({
     Name = "Select Farm Mode",
     Description = "",
@@ -782,6 +670,17 @@ local BossName = F:AddDropdown({
         _G.SelectBoss = value
     end
   })
+
+  local Button = F:AddButton({"Refresh Boss", function()
+    BossName:Remove()
+    for i, v in pairs(game:GetService("ReplicatedStorage"):GetChildren()) do
+    if string.find(v.Name, "Boss") then
+        BossName:Set(v.Name)
+        BossName:Add(v.Name) 
+    end
+end
+end})
+
 
 if World3 then
 F:AddToggle({
