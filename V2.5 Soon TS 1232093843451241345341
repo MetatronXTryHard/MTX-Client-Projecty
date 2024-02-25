@@ -351,6 +351,165 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 World1 = false
 World2 = false
 World3 = false
@@ -673,6 +832,7 @@ local BossName = F:AddDropdown({
 
   local Button = F:AddButton({"Refresh Boss", function()
     BossName:Remove()
+    BossName:Clear()
     for i, v in pairs(game:GetService("ReplicatedStorage"):GetChildren()) do
     if string.find(v.Name, "Boss") then
         BossName:Set(v.Name)
@@ -681,6 +841,42 @@ local BossName = F:AddDropdown({
 end
 end})
 
+local AutoBoss = F:AddButton({"Auto Farm Boss", false, function(value)
+    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
+    _G.AutoFarmBoss = value
+    StopTween(_G.AutoFarmBoss)
+end})
+spawn(function()
+    while wait() do
+        if _G.AutoFarmBoss then
+            pcall(function()
+                if game:GetService("Workspace").Enemies:FindFirstChild(_G.SelectBoss) then
+                    for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                        if v.Name == _G.SelectBoss then
+                            if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
+                                repeat task.wait()
+                                    AutoHaki()
+                                    EquipWeapon(_G.SelectWeapon)
+                                    v.HumanoidRootPart.CanCollide = false
+                                    v.Humanoid.WalkSpeed = 0
+                                    v.HumanoidRootPart.Size = Vector3.new(80,80,80)                             
+                                    topos(v.HumanoidRootPart.CFrame * CFrame.new(2,40,2))
+                                    game:GetService("VirtualUser"):CaptureController()
+                                    game:GetService("VirtualUser"):Button1Down(Vector2.new(1280,672))
+                                    sethiddenproperty(game:GetService("Players").LocalPlayer,"SimulationRadius",math.huge)
+                                until not _G.AutoFarmBoss or not v.Parent or v.Humanoid.Health <= 0
+                            end
+                        end
+                    end
+                else
+                    if game:GetService("ReplicatedStorage"):FindFirstChild(_G.SelectBoss) then
+                        topos(game:GetService("ReplicatedStorage"):FindFirstChild(_G.SelectBoss).HumanoidRootPart.CFrame * CFrame.new(5,10,2))
+                    end
+                end
+            end)
+        end
+    end
+end)
 
 if World3 then
 F:AddToggle({
