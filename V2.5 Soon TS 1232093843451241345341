@@ -269,6 +269,122 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 World1 = false
 World2 = false
 World3 = false
@@ -556,9 +672,6 @@ local Boss = {}
         end
     end
 
-    local BossName = F:Dropdown("Select Boss",Boss,function(value)
-        _G.Select_Boss = value
-     end)
 
   local Autofarmboss = F:AddToggle({
     Name = "Auto Farm All Boss",
