@@ -451,6 +451,85 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 World1 = false
 World2 = false
 World3 = false
@@ -7281,8 +7360,9 @@ SET:AddToggle({
   })
   AntiCheatBypass:Callback(function(value)
     _G.SafeFarm = value
-    CheckAntiCheatBypass() 
+   CheckAntiCheatBypass()
   end)
+
   function CheckAntiCheatBypass()
     for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
         if v:IsA("LocalScript") then
@@ -7300,6 +7380,7 @@ SET:AddToggle({
      end
     end
    CheckAntiCheatBypass()
+
    local Paragraph = M:AddParagraph({"Window", "Window Settings Color"})
    M:AddButton({"Dark + cyan", function()
     redzlib:SetTheme("Dark")
@@ -7312,6 +7393,29 @@ SET:AddToggle({
   M:AddButton({"Darker + Purple", function()
     redzlib:SetTheme("Purple")
   end})
+
+  local FPS = M:AddToggle({
+    Name = "+FPS Lag Reduze",
+    Default = false
+  })
+  FPS:Callback(function(value)
+    _G.AutoFarm = value
+    _G.Remove_trct = value
+    _G.RemoveHit = value
+    _G.KobenHeegeen = value
+    local effectContainer = game:GetService("ReplicatedStorage").Effect.Container
+  
+    local effectsToDestroy = {"Death", "Respawn"}
+    
+    for _, effectName in ipairs(effectsToDestroy) do
+        local effect = effectContainer:FindFirstChild(effectName)
+        if effect then
+            effect:Destroy()
+        end
+    end
+    setfpscap(9999999)
+  end)
+
   --[[
     Tentando Roubar Meus Codigos?, ai Não mano
     Esse Codigo E Licenciado Vai Rolar Não,
