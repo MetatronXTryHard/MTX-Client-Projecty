@@ -350,15 +350,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
 World1 = false
 World2 = false
 World3 = false
@@ -655,6 +646,10 @@ AutoFarm:Callback(function(value)
   StopTween(_G.AutoFarm)
 end)
 
+local selectedBoss = F:Dropdown('Select Boss', Boss, function(bosslist)
+    SelectBoss = bosslist
+end)
+
 local Boss = {}
 for i,v in pairs(game.ReplicatedStorage:GetChildren()) do
 if string.find(v.Name, "Boss") then
@@ -674,33 +669,6 @@ else
 end
 end
 end
-
-local selectedBoss = F:Dropdown('Select Boss', Boss, function(bosslist)
-    SelectBoss = bosslist
-    end)
-    Swords:Button('Refresh Boss', function()
-  local newBoss = {}
-  for i,v in pairs(game.ReplicatedStorage:GetChildren()) do
-  if string.find(v.Name, "Boss") then
-  if v.Name == "Ice Admiral [Lv. 700] [Boss]" then
-  elseif v.Name == "rip_indra [Lv. 1500] [Boss]" then
-  else
-    table.insert(newBoss, v.Name)
-  end
-  end
-  end
-  for i,v in pairs(game.workspace.Enemies:GetChildren()) do
-  if string.find(v.Name, "Boss") then
-  if v.Name == "Ice Admiral [Lv. 700] [Boss]" then
-  elseif v.Name == "rip_indra [Lv. 1500] [Boss]" then
-  else
-    table.insert(newBoss, v.Name)
-  end
-  end
-  end
-  selectedBoss:Refresh(newBoss)
-  end)
-    
 
 local AutoAllBoss = F:AddToggle({
     Name = "Auto Farm All Boss",
