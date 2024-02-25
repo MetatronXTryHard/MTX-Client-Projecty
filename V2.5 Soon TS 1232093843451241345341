@@ -239,6 +239,36 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 World1 = false
 World2 = false
 World3 = false
@@ -515,38 +545,20 @@ AutoFarm:Callback(function(value)
   StopTween(_G.AutoFarm)
 end)
 
+local Boss = {}
+    
+    for i, v in pairs(game:GetService("ReplicatedStorage"):GetChildren()) do
+        if string.find(v.Name, "Boss") then
+            if v.Name == "Ice Admiral [Lv. 700] [Boss]" then
+                else
+                table.insert(Boss, v.Name)
+            end
+        end
+    end
 
-local autofarmchest = F:AddToggle({
-    Name = "Auto Farm All Boss",
-    Default = false
-  })
-  autofarmchest:Callback(function(value)
-    AutoFarmChest = value
-    StopTween(AutoFarmChest)
-  end)
-  _G.MagnitudeAdd = 0
-  spawn(function()
-      while wait() do 
-          if AutoFarmChest then
-              for i,v in pairs(game:GetService("Workspace"):GetChildren()) do 
-                  if v.Name:find("Chest") then
-                      if game:GetService("Workspace"):FindFirstChild(v.Name) then
-                          if (v.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 5000+_G.MagnitudeAdd then
-                              repeat wait()
-                                  if game:GetService("Workspace"):FindFirstChild(v.Name) then
-                                      topos(v.CFrame)
-                                  end
-                              until AutoFarmChest == false or not v.Parent
-                              topos(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
-                              _G.MagnitudeAdd = _G.MagnitudeAdd+1500
-                              break
-                          end
-                      end
-                  end
-              end
-          end
-      end
-  end)
+    local BossName = F:Dropdown("Select Boss",Boss,function(value)
+        _G.Select_Boss = value
+     end)
 
   local Autofarmboss = F:AddToggle({
     Name = "Auto Farm All Boss",
