@@ -6901,7 +6901,7 @@ SET:AddToggle({
 
    local Paragraph = M:AddParagraph({"Window", "Window Settings Color"})
 
-S:AddDropdown({
+M:AddDropdown({
   Name = "Color Theme",
   Description = "",
   Options = {"Dark + cyan", "Darker + blue","Darker + Purple" },
@@ -6920,23 +6920,13 @@ spawn(function()
                 redzlib:SetTheme("Darker")
                elseif getgenv().ThemeColor == "Darker + Purple" then
                 redzlib:SetTheme("Purple")
+                elseif getgenv().ThemeColor == "Darker + Yellow" then
+                redzlib:SetTheme("Yellow")
                 end
             end)
         end
     end
 end)
-
-   M:AddButton({"Dark + cyan", function()
-    redzlib:SetTheme("Dark")
-  end})
-  
-  M:AddButton({"Darker + blue", function()
-    redzlib:SetTheme("Darker")
-  end})
-  
-  M:AddButton({"Darker + Purple", function()
-    redzlib:SetTheme("Purple")
-  end})
   --[[
     Tentando Roubar Meus Codigos?, ai Não mano
     Esse Codigo E Licenciado Vai Rolar Não,
