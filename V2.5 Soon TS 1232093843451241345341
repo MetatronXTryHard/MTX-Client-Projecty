@@ -6920,7 +6920,7 @@ spawn(function()
                 redzlib:SetTheme("Darker")
                elseif getgenv().ThemeColor == "Darker + Purple" then
                 redzlib:SetTheme("Purple")
-                elseif getgenv().ThemeColor == "Darker + Amarelo" then
+               elseif getgenv().ThemeColor == "Darker + Yellow" then
                 redzlib:SetTheme("Amarelo")
                 end
             end)
