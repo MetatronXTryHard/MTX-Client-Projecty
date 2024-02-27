@@ -263,13 +263,6 @@
 
 
 
-
-
-
-
-
-
-
 World1 = false
 World2 = false
 World3 = false
@@ -1553,6 +1546,577 @@ local Section = F:AddSection({"Others Farm | Options"})
 end
 
 
+local Toggle = F:AddToggle({"Auto Farm Chest Tween", false, function(value)
+    AutoFarmChest = value
+    StopTween(AutoFarmChest)
+  end})
+  local Toggle = F:AddToggle({"Auto Chest Stop Torch", false, function(vu)
+	Grab_Chest = vu
+    StopTween(Grab_Chest)
+	T_P_H = vu
+	_G.STP = vu
+  end})
+  if _G.Grab_Chest then
+	Grab_Chest = true
+end
+spawn(function()
+	while wait(2) do
+		pcall(function()
+			if _G.Hop_Chest then
+				if K_CH >= _G.K_MAX and not H_F then
+					if game.Players.LocalPlayer.Backpack:FindFirstChild("Fist of Darkness") or game.Players.LocalPlayer.Character:FindFirstChild("Fist of Darkness") then
+						H_F = true
+					else
+						Hop()
+						wait(50)
+					end
+				end
+			end
+		end)
+	end
+end)
+
+spawn(function()
+    while wait(.2) do
+        pcall(function()
+            if Grab_Chest then
+                if T_P_H then
+                    if game.Players.LocalPlayer.Backpack:FindFirstChild("Fist of Darkness") or game.Players.LocalPlayer.Character:FindFirstChild("Fist of Darkness") then
+                        TP(CFrame.new(-379.70889282227, 73.0458984375, 304.84692382813))
+                        H_F = true
+						game:GetService'VirtualUser':Button1Down(Vector2.new(1280,600))
+                        wait(3)
+                    else
+						_G.Chest_100 = nil
+						_G.Chest_500 = nil
+						_G.Chest_1000 = nil
+						_G.Chest_1500 = nil
+						_G.Chest_2000 = nil
+						_G.Chest_2500 = nil
+						_G.Chest_3500 = nil
+						_G.Chest_4500 = nil
+						_G.Chest_5500 = nil
+						_G.Chest_6500 = nil
+						_G.Chest_7500 = nil
+						_G.Chest_9500 = nil
+						_G.Chest_10500 = nil
+						_G.Chest_12500 = nil
+						_G.Chest_15500 = nil
+						_G.Chest_17500 = nil
+						Chest_100()
+						Chest_500()
+						Chest_1000()
+						Chest_1500()
+						Chest_2000()
+						Chest_2500()
+						Chest_3500()
+						Chest_4500()
+						Chest_5500()
+						Chest_6500()
+						Chest_7500()
+						Chest_9500()
+						Chest_10500()
+						Chest_12500()
+						Chest_15500()
+						Chest_17500()
+						if _G.Chest_100 ~= nil then
+							repeat wait(.3)
+								TP(_G.Chest_100.CFrame)
+							until not _G.Chest_100.Parent or not Grab_Chest
+							if Grab_Chest then
+								K_CH = K_CH + 1
+								K_C:Set('Chest : '..tostring(K_CH).."/".._G.K_MAX)
+							end
+						elseif _G.Chest_500 ~= nil then
+							repeat wait(.3)
+								TP(_G.Chest_500.CFrame)
+							until not _G.Chest_500.Parent or not Grab_Chest
+							if Grab_Chest then
+								K_CH = K_CH + 1
+								K_C:Set('Chest : '..tostring(K_CH).."/".._G.K_MAX)
+							end
+						elseif _G.Chest_1000 ~= nil then
+							repeat wait(.3)
+								TP(_G.Chest_1000.CFrame)
+							until not _G.Chest_1000.Parent or not Grab_Chest
+							if Grab_Chest then
+								K_CH = K_CH + 1
+								K_C:Set('Chest : '..tostring(K_CH).."/".._G.K_MAX)
+							end
+						elseif _G.Chest_1500 ~= nil then
+							repeat wait(.3)
+								TP(_G.Chest_1500.CFrame)
+							until not _G.Chest_1500.Parent or not Grab_Chest
+							if Grab_Chest then
+								K_CH = K_CH + 1
+								K_C:Set('Chest : '..tostring(K_CH).."/".._G.K_MAX)
+							end
+						elseif _G.Chest_2000 ~= nil then
+							repeat wait(.3)
+								TP(_G.Chest_2000.CFrame)
+							until not _G.Chest_2000.Parent or not Grab_Chest
+							if Grab_Chest then
+								K_CH = K_CH + 1
+								K_C:Set('Chest : '..tostring(K_CH).."/".._G.K_MAX)
+							end
+						elseif _G.Chest_2500 ~= nil then
+							repeat wait(.3)
+								TP(_G.Chest_2500.CFrame)
+							until not _G.Chest_2500.Parent or not Grab_Chest
+							if Grab_Chest then
+								K_CH = K_CH + 1
+								K_C:Set('Chest : '..tostring(K_CH).."/".._G.K_MAX)
+							end
+						elseif _G.Chest_3500 ~= nil then
+							repeat wait(.3)
+								TP(_G.Chest_3500.CFrame)
+							until not _G.Chest_3500.Parent or not Grab_Chest
+							if Grab_Chest then
+								K_CH = K_CH + 1
+								K_C:Set('Chest : '..tostring(K_CH).."/".._G.K_MAX)
+							end
+						elseif _G.Chest_4500 ~= nil then
+							repeat wait(.3)
+								TP(_G.Chest_4500.CFrame)
+							until not _G.Chest_4500.Parent or not Grab_Chest
+							if Grab_Chest then
+								K_CH = K_CH + 1
+								K_C:Set('Chest : '..tostring(K_CH).."/".._G.K_MAX)
+							end
+						elseif _G.Chest_5500 ~= nil then
+							repeat wait(.3)
+								TP(_G.Chest_5500.CFrame)
+							until not _G.Chest_5500.Parent or not Grab_Chest
+							if Grab_Chest then
+								K_CH = K_CH + 1
+								K_C:Set('Chest : '..tostring(K_CH).."/".._G.K_MAX)
+							end
+						elseif _G.Chest_6500 ~= nil then
+							repeat wait(.3)
+								TP(_G.Chest_6500.CFrame)
+							until not _G.Chest_6500.Parent or not Grab_Chest
+							if Grab_Chest then
+								K_CH = K_CH + 1
+								K_C:Set('Chest : '..tostring(K_CH).."/".._G.K_MAX)
+							end
+						elseif _G.Chest_7500 ~= nil then
+							repeat wait(.3)
+								TP(_G.Chest_7500.CFrame)
+							until not _G.Chest_7500.Parent or not Grab_Chest
+							if Grab_Chest then
+								K_CH = K_CH + 1
+								K_C:Set('Chest : '..tostring(K_CH).."/".._G.K_MAX)
+							end
+						elseif _G.Chest_9500 ~= nil then
+							repeat wait(.3)
+								TP(_G.Chest_9500.CFrame)
+							until not _G.Chest_9500.Parent or not Grab_Chest
+							if Grab_Chest then
+								K_CH = K_CH + 1
+								K_C:Set('Chest : '..tostring(K_CH).."/".._G.K_MAX)
+							end
+						elseif _G.Chest_10500 ~= nil then
+							repeat wait(.3)
+								TP(_G.Chest_10500.CFrame)
+							until not _G.Chest_10500.Parent or not Grab_Chest
+							if Grab_Chest then
+								K_CH = K_CH + 1
+								K_C:Set('Chest : '..tostring(K_CH).."/".._G.K_MAX)
+							end
+						elseif _G.Chest_12500 ~= nil then
+							repeat wait(.3)
+								TP(_G.Chest_12500.CFrame)
+							until not _G.Chest_12500.Parent or not Grab_Chest
+							if Grab_Chest then
+								K_CH = K_CH + 1
+								K_C:Set('Chest : '..tostring(K_CH).."/".._G.K_MAX)
+							end
+						elseif _G.Chest_15500 ~= nil then
+							repeat wait(.3)
+								TP(_G.Chest_15500.CFrame)
+							until not _G.Chest_15500.Parent or not Grab_Chest
+							if Grab_Chest then
+								K_CH = K_CH + 1
+								K_C:Set('Chest : '..tostring(K_CH).."/".._G.K_MAX)
+							end
+						elseif _G.Chest_17500 ~= nil then
+							repeat wait(.3)
+								TP(_G.Chest_17500.CFrame)
+							until not _G.Chest_17500.Parent or not Grab_Chest
+							if Grab_Chest then
+								K_CH = K_CH + 1
+								K_C:Set('Chest : '..tostring(K_CH).."/".._G.K_MAX)
+							end
+						end
+                    end
+                else
+                    _G.Chest_100 = nil
+						_G.Chest_500 = nil
+						_G.Chest_1000 = nil
+						_G.Chest_1500 = nil
+						_G.Chest_2000 = nil
+						_G.Chest_2500 = nil
+						_G.Chest_3500 = nil
+						_G.Chest_4500 = nil
+						_G.Chest_5500 = nil
+						_G.Chest_6500 = nil
+						_G.Chest_7500 = nil
+						_G.Chest_9500 = nil
+						_G.Chest_10500 = nil
+						_G.Chest_12500 = nil
+						_G.Chest_15500 = nil
+						_G.Chest_17500 = nil
+						Chest_100()
+						Chest_500()
+						Chest_1000()
+						Chest_1500()
+						Chest_2000()
+						Chest_2500()
+						Chest_3500()
+						Chest_4500()
+						Chest_5500()
+						Chest_6500()
+						Chest_7500()
+						Chest_9500()
+						Chest_10500()
+						Chest_12500()
+						Chest_15500()
+						Chest_17500()
+						if _G.Chest_100 ~= nil then
+							repeat wait(.3)
+								TP(_G.Chest_100.CFrame)
+							until not _G.Chest_100.Parent or not Grab_Chest
+							if Grab_Chest then
+								K_CH = K_CH + 1
+								K_C:Set('Chest : '..tostring(K_CH).."/".._G.K_MAX)
+							end
+						elseif _G.Chest_500 ~= nil then
+							repeat wait(.3)
+								TP(_G.Chest_500.CFrame)
+							until not _G.Chest_500.Parent or not Grab_Chest
+							if Grab_Chest then
+								K_CH = K_CH + 1
+								K_C:Set('Chest : '..tostring(K_CH).."/".._G.K_MAX)
+							end
+						elseif _G.Chest_1000 ~= nil then
+							repeat wait(.3)
+								TP(_G.Chest_1000.CFrame)
+							until not _G.Chest_1000.Parent or not Grab_Chest
+							if Grab_Chest then
+								K_CH = K_CH + 1
+								K_C:Set('Chest : '..tostring(K_CH).."/".._G.K_MAX)
+							end
+						elseif _G.Chest_1500 ~= nil then
+							repeat wait(.3)
+								TP(_G.Chest_1500.CFrame)
+							until not _G.Chest_1500.Parent or not Grab_Chest
+							if Grab_Chest then
+								K_CH = K_CH + 1
+								K_C:Set('Chest : '..tostring(K_CH).."/".._G.K_MAX)
+							end
+						elseif _G.Chest_2000 ~= nil then
+							repeat wait(.3)
+								TP(_G.Chest_2000.CFrame)
+							until not _G.Chest_2000.Parent or not Grab_Chest
+							if Grab_Chest then
+								K_CH = K_CH + 1
+								K_C:Set('Chest : '..tostring(K_CH).."/".._G.K_MAX)
+							end
+						elseif _G.Chest_2500 ~= nil then
+							repeat wait(.3)
+								TP(_G.Chest_2500.CFrame)
+							until not _G.Chest_2500.Parent or not Grab_Chest
+							if Grab_Chest then
+								K_CH = K_CH + 1
+								K_C:Set('Chest : '..tostring(K_CH).."/".._G.K_MAX)
+							end
+						elseif _G.Chest_3500 ~= nil then
+							repeat wait(.3)
+								TP(_G.Chest_3500.CFrame)
+							until not _G.Chest_3500.Parent or not Grab_Chest
+							if Grab_Chest then
+								K_CH = K_CH + 1
+								K_C:Set('Chest : '..tostring(K_CH).."/".._G.K_MAX)
+							end
+						elseif _G.Chest_4500 ~= nil then
+							repeat wait(.3)
+								TP(_G.Chest_4500.CFrame)
+							until not _G.Chest_4500.Parent or not Grab_Chest
+							if Grab_Chest then
+								K_CH = K_CH + 1
+								K_C:Set('Chest : '..tostring(K_CH).."/".._G.K_MAX)
+							end
+						elseif _G.Chest_5500 ~= nil then
+							repeat wait(.3)
+								TP(_G.Chest_5500.CFrame)
+							until not _G.Chest_5500.Parent or not Grab_Chest
+							if Grab_Chest then
+								K_CH = K_CH + 1
+								K_C:Set('Chest : '..tostring(K_CH).."/".._G.K_MAX)
+							end
+						elseif _G.Chest_6500 ~= nil then
+							repeat wait(.3)
+								TP(_G.Chest_6500.CFrame)
+							until not _G.Chest_6500.Parent or not Grab_Chest
+							if Grab_Chest then
+								K_CH = K_CH + 1
+								K_C:Set('Chest : '..tostring(K_CH).."/".._G.K_MAX)
+							end
+						elseif _G.Chest_7500 ~= nil then
+							repeat wait(.3)
+								TP(_G.Chest_7500.CFrame)
+							until not _G.Chest_7500.Parent or not Grab_Chest
+							if Grab_Chest then
+								K_CH = K_CH + 1
+								K_C:Set('Chest : '..tostring(K_CH).."/".._G.K_MAX)
+							end
+						elseif _G.Chest_9500 ~= nil then
+							repeat wait(.3)
+								TP(_G.Chest_9500.CFrame)
+							until not _G.Chest_9500.Parent or not Grab_Chest
+							if Grab_Chest then
+								K_CH = K_CH + 1
+								K_C:Set('Chest : '..tostring(K_CH).."/".._G.K_MAX)
+							end
+						elseif _G.Chest_10500 ~= nil then
+							repeat wait(.3)
+								TP(_G.Chest_10500.CFrame)
+							until not _G.Chest_10500.Parent or not Grab_Chest
+							if Grab_Chest then
+								K_CH = K_CH + 1
+								K_C:Set('Chest : '..tostring(K_CH).."/".._G.K_MAX)
+							end
+						elseif _G.Chest_12500 ~= nil then
+							repeat wait(.3)
+								TP(_G.Chest_12500.CFrame)
+							until not _G.Chest_12500.Parent or not Grab_Chest
+							if Grab_Chest then
+								K_CH = K_CH + 1
+								K_C:Set('Chest : '..tostring(K_CH).."/".._G.K_MAX)
+							end
+						elseif _G.Chest_15500 ~= nil then
+							repeat wait(.3)
+								TP(_G.Chest_15500.CFrame)
+							until not _G.Chest_15500.Parent or not Grab_Chest
+							if Grab_Chest then
+								K_CH = K_CH + 1
+								K_C:Set('Chest : '..tostring(K_CH).."/".._G.K_MAX)
+							end
+						elseif _G.Chest_17500 ~= nil then
+							repeat wait(.3)
+								TP(_G.Chest_17500.CFrame)
+							until not _G.Chest_17500.Parent or not Grab_Chest
+							if Grab_Chest then
+								K_CH = K_CH + 1
+								K_C:Set('Chest : '..tostring(K_CH).."/".._G.K_MAX)
+							end
+						end
+                end
+            end
+        end)
+    end
+end)
+
+function Chest_100()
+	for i,v in pairs(game:GetService("Workspace"):GetChildren()) do
+		if v.Name == "Chest1" and (v.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 100 then
+			_G.Chest_100 = v
+			return
+		elseif v.Name == "Chest2" and (v.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 100 then
+			_G.Chest_100 = v
+			return
+		end
+	end
+end
+function Chest_500()
+	for i,v in pairs(game:GetService("Workspace"):GetChildren()) do
+		if v.Name == "Chest1" and (v.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 500 then
+			_G.Chest_500 = v
+			return
+		elseif v.Name == "Chest2" and (v.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 500 then
+			_G.Chest_500 = v
+			return
+		end
+	end
+end
+function Chest_1000()
+	for i,v in pairs(game:GetService("Workspace"):GetChildren()) do
+		if v.Name == "Chest1" and (v.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 1000 then
+			_G.Chest_1000 = v
+			return
+		elseif v.Name == "Chest2" and (v.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 1000 then
+			_G.Chest_1000 = v
+			return
+		end
+	end
+end
+function Chest_1500()
+	for i,v in pairs(game:GetService("Workspace"):GetChildren()) do
+		if v.Name == "Chest1" and (v.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 1500 then
+			_G.Chest_1500 = v
+			return
+		elseif v.Name == "Chest2" and (v.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 1500 then
+			_G.Chest_1500 = v
+			return
+		end
+	end
+end
+function Chest_2000()
+	for i,v in pairs(game:GetService("Workspace"):GetChildren()) do
+		if v.Name == "Chest1" and (v.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 2000 then
+			_G.Chest_2000 = v
+			return
+		elseif v.Name == "Chest2" and (v.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 2000 then
+			_G.Chest_2000 = v
+			return
+		end
+	end
+end
+function Chest_2500()
+	for i,v in pairs(game:GetService("Workspace"):GetChildren()) do
+		if v.Name == "Chest1" and (v.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 2500 then
+			_G.Chest_2500 = v
+			return
+		elseif v.Name == "Chest2" and (v.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 2500 then
+			_G.Chest_2500 = v
+			return
+		end
+	end
+end
+function Chest_3500()
+	for i,v in pairs(game:GetService("Workspace"):GetChildren()) do
+		if v.Name == "Chest1" and (v.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 3500 then
+			_G.Chest_3500 = v
+			return
+		elseif v.Name == "Chest2" and (v.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 3500 then
+			_G.Chest_3500 = v
+			return
+		end
+	end
+end
+function Chest_4500()
+	for i,v in pairs(game:GetService("Workspace"):GetChildren()) do
+		if v.Name == "Chest1" and (v.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 4500 then
+			_G.Chest_4500 = v
+			return
+		elseif v.Name == "Chest2" and (v.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 4500 then
+			_G.Chest_4500 = v
+			return
+		end
+	end
+end
+function Chest_5500()
+	for i,v in pairs(game:GetService("Workspace"):GetChildren()) do
+		if v.Name == "Chest1" and (v.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 5500 then
+			_G.Chest_5500 = v
+			return
+		elseif v.Name == "Chest2" and (v.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 5500 then
+			_G.Chest_5500 = v
+			return
+		end
+	end
+end
+function Chest_6500()
+	for i,v in pairs(game:GetService("Workspace"):GetChildren()) do
+		if v.Name == "Chest1" and (v.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 6500 then
+			_G.Chest_6500 = v
+			return
+		elseif v.Name == "Chest2" and (v.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 6500 then
+			_G.Chest_6500 = v
+			return
+		end
+	end
+end
+function Chest_7500()
+	for i,v in pairs(game:GetService("Workspace"):GetChildren()) do
+		if v.Name == "Chest1" and (v.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 7500 then
+			_G.Chest_7500 = v
+			return
+		elseif v.Name == "Chest2" and (v.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 7500 then
+			_G.Chest_7500 = v
+			return
+		end
+	end
+end
+function Chest_9500()
+	for i,v in pairs(game:GetService("Workspace"):GetChildren()) do
+		if v.Name == "Chest1" and (v.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 9500 then
+			_G.Chest_9500 = v
+			return
+		elseif v.Name == "Chest2" and (v.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 9500 then
+			_G.Chest_9500 = v
+			return
+		end
+	end
+end
+function Chest_10500()
+	for i,v in pairs(game:GetService("Workspace"):GetChildren()) do
+		if v.Name == "Chest1" and (v.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 10500 then
+			_G.Chest_10500 = v
+			return
+		elseif v.Name == "Chest2" and (v.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 10500 then
+			_G.Chest_10500 = v
+			return
+		end
+	end
+end
+function Chest_12500()
+	for i,v in pairs(game:GetService("Workspace"):GetChildren()) do
+		if v.Name == "Chest1" and (v.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 12500 then
+			_G.Chest_12500 = v
+			return
+		elseif v.Name == "Chest2" and (v.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 12500 then
+			_G.Chest_12500 = v
+			return
+		end
+	end
+end
+function Chest_15500()
+	for i,v in pairs(game:GetService("Workspace"):GetChildren()) do
+		if v.Name == "Chest1" and (v.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 15500 then
+			_G.Chest_15500 = v
+			return
+		elseif v.Name == "Chest2" and (v.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 15500 then
+			_G.Chest_15500 = v
+			return
+		end
+	end
+end
+function Chest_17500()
+	for i,v in pairs(game:GetService("Workspace"):GetChildren()) do
+		if v.Name == "Chest1" and (v.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 17500 then
+			_G.Chest_17500 = v
+			return
+		elseif v.Name == "Chest2" and (v.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 17500 then
+			_G.Chest_17500 = v
+			return
+		end
+	end
+end
+  _G.MagnitudeAdd = 0
+  spawn(function()
+      while wait() do 
+          if AutoFarmChest then
+              for i,v in pairs(game:GetService("Workspace"):GetChildren()) do 
+                  if v.Name:find("Chest") then
+                      if game:GetService("Workspace"):FindFirstChild(v.Name) then
+                          if (v.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 5000+_G.MagnitudeAdd then
+                              repeat wait()
+                                  if game:GetService("Workspace"):FindFirstChild(v.Name) then
+                                      topos(v.CFrame)
+                                  end
+                              until AutoFarmChest == false or not v.Parent
+                              topos(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
+                              _G.MagnitudeAdd = _G.MagnitudeAdd+1500
+                              break
+                          end
+                      end
+                  end
+              end
+          end
+      end
+  end)
+  
 
 if World3 then
     local Dropdown = F:AddDropdown({
