@@ -28,7 +28,7 @@ World2 = true
 elseif placeId == 7449423635 then
 World3 = true
 end
-local redzlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/MetatronXTryHard/MTX-Client-Projecty/main/Redz%20Lib%20V5%20Moded"))()
+local redzlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/RedzLibV5/main/Source.Lua"))()
 local Window = redzlib:MakeWindow({
   Title = "🥋 MTX Client | Blox Fruits 👑",
   SubTitle = "By MTX Team | V2.5",
@@ -6900,6 +6900,32 @@ SET:AddToggle({
    CheckAntiCheatBypass()
 
    local Paragraph = M:AddParagraph({"Window", "Window Settings Color"})
+
+S:AddDropdown({
+  Name = "Color Theme",
+  Description = "",
+  Options = {"Dark + cyan", "Darker + blue","Darker + Purple" },
+  Default = "Darker + Purple",
+  Callback = function(value)
+    getgenv().ThemeColor = value
+  end
+})
+spawn(function()
+    while wait(.1) do
+        if getgenv().ThemeColor then
+            pcall(function()
+                if getgenv().ThemeColor == "Dark + cyan" then
+                redzlib:SetTheme("Dark")
+                elseif getgenv().ThemeColor == "Darker + blue" then
+                redzlib:SetTheme("Darker")
+               elseif getgenv().ThemeColor == "Darker + Purple" then
+                redzlib:SetTheme("Purple")
+                end
+            end)
+        end
+    end
+end)
+
    M:AddButton({"Dark + cyan", function()
     redzlib:SetTheme("Dark")
   end})
@@ -6911,14 +6937,6 @@ SET:AddToggle({
   M:AddButton({"Darker + Purple", function()
     redzlib:SetTheme("Purple")
   end})
-    M:AddButton({"branco", function()
-    redzlib:SetTheme("White")
-  end})
-    M:AddButton({"Yellow", function()
-    redzlib:SetTheme("Yellow")
-  end})
-
-
   --[[
     Tentando Roubar Meus Codigos?, ai Não mano
     Esse Codigo E Licenciado Vai Rolar Não,
