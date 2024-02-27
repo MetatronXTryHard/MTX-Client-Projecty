@@ -37,7 +37,7 @@ local Window = redzlib:MakeWindow({
 Window:AddMinimizeButton({
   Button = {
     -- Button Properties
-    Image = "rbxassetid://16269686129"
+    Image = "rbxassetid://16541058523"
   },
   UICorner = {true,
     -- Corner Properties
@@ -1591,7 +1591,7 @@ end)
 S:AddDropdown({
   Name = "Fast Attack Delay",
   Description = "",
-  Options = {"0", "0.1", "0.15", "0.175", "0.2", "0.25"},
+  Options = {"0", "0.1", "0.2", "0.3", "0.15", "0.175"},
   Default = "0.15",
   Callback = function(value)
     _G.FastAttackDelay = value
@@ -1605,14 +1605,14 @@ spawn(function()
                     _G.FastAttackDelay = 0
                 elseif _G.FastAttackDelay == "0.1" then
                     _G.FastAttackDelay = 0.1
+                elseif _G.FastAttackDelay == "0.2" then
+                    _G.FastAttackDelay = 0.2
+                elseif _G.FastAttackDelay == "0.3" then
+                    _G.FastAttackDelay = 0.2
                 elseif _G.FastAttackDelay == "0.15" then
                     _G.FastAttackDelay = 0.15
                 elseif _G.FastAttackDelay == "0.175" then
                     _G.FastAttackDelay = 0.175
-                elseif _G.FastAttackDelay == "0.2" then
-                    _G.FastAttackDelay = 0.2
-                elseif _G.FastAttackDelay == "0.25" then
-                    _G.FastAttackDelay = 0.25
                 end
             end)
         end
@@ -1622,9 +1622,9 @@ PosY = 35
 S:AddSlider({
     Name = "Distance Vector",
     Min = 35,
-    Max = 50,
+    Max = 60,
     Increase = 1,
-    Default = 5,
+    Default = 35,
     Callback = function(value)
         PosY = value
     end
