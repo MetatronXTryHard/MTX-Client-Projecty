@@ -28,7 +28,7 @@ World2 = true
 elseif placeId == 7449423635 then
 World3 = true
 end
-local redzlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/RedzLibV5/main/Source.Lua"))()
+local redzlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/MetatronXTryHard/MTX-Client-Projecty/main/Redz%20Lib%20V5%20Moded"))()
 local Window = redzlib:MakeWindow({
   Title = "🥋 MTX Client | Blox Fruits 👑",
   SubTitle = "By MTX Team | V2.5",
