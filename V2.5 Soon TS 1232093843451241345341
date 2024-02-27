@@ -531,6 +531,155 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 World1 = false
 World2 = false
 World3 = false
@@ -561,7 +710,7 @@ Window:AddMinimizeButton({
     -- Stroke Properties
   }}
 })
-local F = Window:MakeTab({"Main Farm", "moon"})
+
 local SF = Window:MakeTab({"Items Farm", "swords"})
 local S = Window:MakeTab({"Farm Settings", "settings"})
 local SV = Window:MakeTab({"Server Stats", "ghost"})
@@ -576,6 +725,7 @@ local SH = Window:MakeTab({"Shop", "shopping-cart"})
 local M = Window:MakeTab({"Misc.", "more-horizontal"})
 --MTX V2.5 Soon Recode
 -- System Requirements Quests
+
 loadstring(game:HttpGet("https://pastebin.com/raw/Ht5HtN4Z"))()
 ----///Select Weapon
 local Section = F:AddSection({"Main Farm | Options"})
@@ -809,6 +959,8 @@ end)
 
 
 
+
+
   spawn(function()
     while wait() do
         if _G.AutoFarmBoss and BypassTP then
@@ -875,19 +1027,6 @@ spawn(function()
     end
 end)
   
-  local refresh = F:AddButton({"Refresh Boss", function()
-    BossName:Clear()
-    wait(0.1)
-    for i, v in pairs(game:GetService("ReplicatedStorage"):GetChildren()) do
-        if (v.Name == "rip_indra" or v.Name == "Ice Admiral")
-                            or (v.Name == "Saber Expert" or v.Name == "The Saw" or v.Name == "Greybeard" or v.Name == "Mob Leader" or v.Name == "The Gorilla King" or v.Name == "Bobby" or v.Name == "Yeti" or v.Name == "Vice Admiral" or v.Name == "Warden" or v.Name == "Chief Warden" or v.Name == "Swan" or v.Name == "Magma Admiral" or v.Name == "Fishman Lord" or v.Name == "Wysper" or v.Name == "Thunder God" or v.Name == "Cyborg")
-                            or (v.Name == "Don Swan" or v.Name == "Diamond" or v.Name == "Jeremy" or v.Name == "Fajita" or v.Name == "Smoke Admiral" or v.Name == "Awakened Ice Admiral" or v.Name == "Tide Keeper" or v.Name == "Order" or v.Name == "Darkbeard")
-                            or (v.Name == "Stone" or v.Name == "Island Empress" or v.Name == "Kilo Admiral" or v.Name == "Captain Elephant" or v.Name == "Beautiful Pirate" or v.Name == "Cake Queen" or v.Name == "rip_indra True Form" or v.Name == "Longma" or v.Name == "Soul Reaper" or v.Name == "Cake Prince" or v.Name == "Dough King") then
-            BossName:Add(v.Name)
-        end
-    end
-  end})
-
 local AutoAllBoss = F:AddToggle({
     Name = "Auto Farm All Boss",
     Default = false
@@ -1688,7 +1827,7 @@ spawn(function()
             if game.Players.LocalPlayer.Data.Level.Value >= 10 then
                 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance",Vector3.new(-7894.6176757813, 5547.1416015625, -380.29119873047))
                     for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-                        if v.Name == "Shanda" then
+                        if v.Name == "Royal Soldier" then
                             if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
                                 repeat task.wait()
                                     AutoHaki()
@@ -1703,14 +1842,14 @@ spawn(function()
                                     game:GetService("VirtualUser"):Button1Down(Vector2.new(1280,672))
                                 until not _G.Farmfast or not v.Parent or v.Humanoid.Health <= 0
                                 StardMag = false
-                                TP1(CFrame.new(-7678.48974609375, 5566.40380859375, -497.2156066894531))
+                                TP1(CFrame.new(-7836.75341796875, 5645.6640625, -1790.6236572265625))
                                 UnEquipWeapon(_G.SelectWeapon)
                             end
                         end
                     end
                 else
-                    if game:GetService("ReplicatedStorage"):FindFirstChild("Shanda") then
-                        TP1(game:GetService("ReplicatedStorage"):FindFirstChild("Shanda").HumanoidRootPart.CFrame * CFrame.new(5,10,2))
+                    if game:GetService("ReplicatedStorage"):FindFirstChild("Royal Soldier") then
+                        TP1(game:GetService("ReplicatedStorage"):FindFirstChild("Royal Soldier").HumanoidRootPart.CFrame * CFrame.new(5,10,2))
                     end
                 end
             end)
@@ -1735,7 +1874,7 @@ spawn(function()
     pcall(function()
         while wait() do
             if _G.Farmfast and World1 then
-                if game.Players.LocalPlayer.Data.Level.Value >= 200 then
+                if game.Players.LocalPlayer.Data.Level.Value >= 250 then
                     _G.AutoFarm = true
                     _G.AutoPlayerHunter = false
                 end
