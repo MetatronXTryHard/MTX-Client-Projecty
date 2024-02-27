@@ -61,21 +61,21 @@ local redzlib = {
   }
 },
 
-  Info == {
+  Info = {
     Version = "1.0.0",
     PlaceName = MarketplaceService:GetProductInfo(game.PlaceId).Name
   },
-  Save == {
+  Save = {
     UISize = {550, 380},
     TabSize = 160,
     Theme = "Darker"
   },
-  Instances == {},
-  Elements == {},
-  Options == {},
-  Flags == {},
-  Tabs == {},
-  Icons == loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/RedzLibV5/main/Icons.Lua"))()
+  Instances = {},
+  Elements = {},
+  Options = {},
+  Flags = {},
+  Tabs = {},
+  Icons = loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/RedzLibV5/main/Icons.Lua"))()
 }
 
 local ViewportSize = workspace.CurrentCamera.ViewportSize
