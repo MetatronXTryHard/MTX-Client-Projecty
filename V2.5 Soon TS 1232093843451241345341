@@ -6904,7 +6904,7 @@ SET:AddToggle({
 M:AddDropdown({
   Name = "Color Theme",
   Description = "",
-  Options = {"Dark + cyan", "Darker + blue","Darker + Purple" },
+  Options = {"Dark + cyan", "Darker + blue","Darker + Purple", "Darker + Yellow"},
   Default = "Darker + Purple",
   Callback = function(value)
     getgenv().ThemeColor = value
