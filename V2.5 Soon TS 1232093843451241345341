@@ -2209,9 +2209,9 @@ spawn(function()
         end
     end
 end)
-PosY = 35
+
 S:AddSlider({
-    Name = "Distance Vector",
+    Name = "Distance Vector Farm",
     Min = 35,
     Max = 60,
     Increase = 1,
@@ -5742,7 +5742,7 @@ end)
         MaxValue = 100,
         Default = 3,
         Increase = 1,
-        Callback = function(Value)
+        Callback = function(value)
             _G.Point = value
         end
       })
