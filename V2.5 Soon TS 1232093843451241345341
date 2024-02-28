@@ -2840,11 +2840,11 @@ Button:Callback(function()
     PlayerSelect:Set(game.Players:GetPlayers())
     PlayerSelect:Remove(game.Players.LocalPlayer.Name)
 end)
-
-PlayerSelect:Remove(Player.Name)
-PlayerSelect:Select(1)
-
-end
+local Teste = PL:AddButton({"Refresh Dropdown"})
+Teste:Callback(function()
+    PlayerSelect:Remove(Player.Name)
+    PlayerSelect:Select(1)
+end)
 
 local GoToPlayer = PL:AddToggle({"Tween To Player", false, function(value)
     _G.TeleportPly = value
