@@ -2844,7 +2844,9 @@ end)
 PlayerSelect:Remove(Player.Name)
 PlayerSelect:Select(1)
 
-local Toggle = PL:AddToggle({"Tween To Player", false, function(value)
+end
+
+local GoToPlayer = PL:AddToggle({"Tween To Player", false, function(value)
     _G.TeleportPly = value
     pcall(function()
         if _G.TeleportPly then
