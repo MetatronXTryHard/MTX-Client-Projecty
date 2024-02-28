@@ -226,274 +226,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 --[[
     MTX Client update
 
@@ -862,46 +594,6 @@ spawn(function()
     end
 end)
   
-
-local AutoAllBoss = F:AddToggle({
-    Name = "Auto Farm All Boss",
-    Default = false
-  })
-  AutoAllBoss:Callback(function(value)
-    _G.AutoAllBoss = value
-    StopTween(_G.AutoAllBoss)
-  end)
-  spawn(function()
-    while wait() do
-        if _G.AutoAllBoss then
-            pcall(function()
-                for i,v in pairs(game.ReplicatedStorage:GetChildren()) do
-                    if (v.Name == "rip_indra" or v.Name == "Ice Admiral") or (v.Name == "Saber Expert" or v.Name == "The Saw" or v.Name == "Greybeard" or v.Name == "Mob Leader" or v.Name == "The Gorilla King" or v.Name == "Bobby" or v.Name == "Yeti" or v.Name == "Vice Admiral" or v.Name == "Warden" or v.Name == "Chief Warden" or v.Name == "Swan" or v.Name == "Magma Admiral" or v.Name == "Fishman Lord" or v.Name == "Wysper" or v.Name == "Thunder God" or v.Name == "Cyborg") or (v.Name == "Don Swan" or v.Name == "Diamond" or v.Name == "Jeremy" or v.Name == "Fajita" or v.Name == "Smoke Admiral" or v.Name == "Awakened Ice Admiral" or v.Name == "Tide Keeper" or v.Name == "Order" or v.Name == "Darkbeard") or (v.Name == "Stone" or v.Name == "Island Empress" or v.Name == "Kilo Admiral" or v.Name == "Captain Elephant" or v.Name == "Beautiful Pirate" or v.Name == "Cake Queen" or v.Name == "rip_indra True Form" or v.Name == "Longma" or v.Name == "Soul Reaper" or v.Name == "Cake Prince" or v.Name == "Dough King") then
-                        if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude < 17000 then
-                            repeat task.wait()
-                                AutoHaki()
-                                EquipWeapon(_G.SelectWeapon)
-                                v.Humanoid.WalkSpeed = 0
-                                v.HumanoidRootPart.CanCollide = false
-                                v.Head.CanCollide = false
-                                v.HumanoidRootPart.Size = Vector3.new(80,80,80)
-                                topos(v.HumanoidRootPart.CFrame*Pos)
-                                game:GetService'VirtualUser':CaptureController()
-                                game:GetService'VirtualUser':Button1Down(Vector2.new(1280, 672))
-                                sethiddenproperty(game.Players.LocalPlayer,"SimulationRadius",math.huge)
-                            until v.Humanoid.Health <= 0 or _G.AutoAllBoss == false or not v.Parent
-                        end
-                    else
-                        if _G.AutoAllBossHop then
-                            Hop()
-                        end
-                    end
-                end
-            end)
-        end
-    end
-end)
-
 if World3 then
 F:AddToggle({
     Name = "Auto Elite Hunter",
@@ -1801,6 +1493,44 @@ end
 if World2 or World3 then
 local Section = F:AddSection({"Others Farm | Options"})
 end
+local AutoAllBoss = F:AddToggle({
+    Name = "Auto Farm All Boss",
+    Default = false
+  })
+  AutoAllBoss:Callback(function(value)
+    _G.AutoAllBoss = value
+    StopTween(_G.AutoAllBoss)
+  end)
+  spawn(function()
+    while wait() do
+        if _G.AutoAllBoss then
+            pcall(function()
+                for i,v in pairs(game.ReplicatedStorage:GetChildren()) do
+                    if (v.Name == "rip_indra" or v.Name == "Ice Admiral") or (v.Name == "Saber Expert" or v.Name == "The Saw" or v.Name == "Greybeard" or v.Name == "Mob Leader" or v.Name == "The Gorilla King" or v.Name == "Bobby" or v.Name == "Yeti" or v.Name == "Vice Admiral" or v.Name == "Warden" or v.Name == "Chief Warden" or v.Name == "Swan" or v.Name == "Magma Admiral" or v.Name == "Fishman Lord" or v.Name == "Wysper" or v.Name == "Thunder God" or v.Name == "Cyborg") or (v.Name == "Don Swan" or v.Name == "Diamond" or v.Name == "Jeremy" or v.Name == "Fajita" or v.Name == "Smoke Admiral" or v.Name == "Awakened Ice Admiral" or v.Name == "Tide Keeper" or v.Name == "Order" or v.Name == "Darkbeard") or (v.Name == "Stone" or v.Name == "Island Empress" or v.Name == "Kilo Admiral" or v.Name == "Captain Elephant" or v.Name == "Beautiful Pirate" or v.Name == "Cake Queen" or v.Name == "rip_indra True Form" or v.Name == "Longma" or v.Name == "Soul Reaper" or v.Name == "Cake Prince" or v.Name == "Dough King") then
+                        if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude < 17000 then
+                            repeat task.wait()
+                                AutoHaki()
+                                EquipWeapon(_G.SelectWeapon)
+                                v.Humanoid.WalkSpeed = 0
+                                v.HumanoidRootPart.CanCollide = false
+                                v.Head.CanCollide = false
+                                v.HumanoidRootPart.Size = Vector3.new(80,80,80)
+                                topos(v.HumanoidRootPart.CFrame*Pos)
+                                game:GetService'VirtualUser':CaptureController()
+                                game:GetService'VirtualUser':Button1Down(Vector2.new(1280, 672))
+                                sethiddenproperty(game.Players.LocalPlayer,"SimulationRadius",math.huge)
+                            until v.Humanoid.Health <= 0 or _G.AutoAllBoss == false or not v.Parent
+                        end
+                    else
+                        if _G.AutoAllBossHop then
+                            Hop()
+                        end
+                    end
+                end
+            end)
+        end
+    end
+end)
 
   local Toggle = F:AddToggle({"Auto Chest Tween", false, function(vu)
 	Grab_Chest = vu
@@ -2661,7 +2391,7 @@ S:AddDropdown({
   Name = "Fast Attack Delay",
   Description = "",
   Options = {"0", "0.1", "0.2", "0.3", "0.15", "0.175"},
-  Default = "0.15",
+  Default = "0.3",
   Callback = function(value)
     _G.FastAttackDelay = value
   end
@@ -2677,7 +2407,7 @@ spawn(function()
                 elseif _G.FastAttackDelay == "0.2" then
                     _G.FastAttackDelay = 0.2
                 elseif _G.FastAttackDelay == "0.3" then
-                    _G.FastAttackDelay = 0.2
+                    _G.FastAttackDelay = 0.3
                 elseif _G.FastAttackDelay == "0.15" then
                     _G.FastAttackDelay = 0.15
                 elseif _G.FastAttackDelay == "0.175" then
@@ -7113,7 +6843,7 @@ elseif World3 then
         topos(CFrame.new(-5017.40869, 314.844055, -2823.0127, -0.925743818, 4.48217499e-08, -0.378151238, 4.55503146e-09, 1, 1.07377559e-07, 0.378151238, 9.7681621e-08, -0.925743818))
     end})
  end
-
+-- Chekers
     local Section = SV:AddSection({"Server Stats | Checks"})
      local FrozenIsland = SV:AddParagraph({"Frozen Island Check..."})  
      spawn(function()
@@ -7163,7 +6893,7 @@ local KitsuneIsland = SV:AddParagraph({"Kitsune Island Check...", "❌ : Kitsune
 spawn(function()
     pcall(function()
         while wait() do
-            if game.Workspace._WorldOrigin.Locations:FindFirstChild("Kitsune Island") then
+            if game.Workspace._WorldOrigin.Locations:FindFirstChild("KitsuneIsland") then
                 KitsuneIsland:Set("🦊 : Kitsune Island Spawn")
             else
                 KitsuneIsland:Set("❌ : Kitsune Island Not Spawn")
@@ -7200,6 +6930,21 @@ spawn(function()
         end)
     end
 end)
+
+local Button = SV:AddButton({"Coppy Job Id", function(Value)
+    setclipboard(tostring(game.JobId))
+end})
+SV:AddTextBox({
+    Name = "Place Job Id",
+    Description = "Se Teletrasporte Para Um ID",
+    Default = "MTX Paste ID",
+    Callback = function(value)
+        _G.Job = value
+    end
+  })
+local Button = SV:AddButton({"Join Sever", function(Value)
+    game:GetService("TeleportService"):TeleportToPlaceInstance(game.placeId,_G.Job, game.Players.LocalPlayer)
+end})
 ----/// Misc
 local Section = M:AddSection({"Misc | Options"})
 ----/// Auto Rejoin
