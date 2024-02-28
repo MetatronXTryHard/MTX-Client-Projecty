@@ -2821,7 +2821,38 @@ end)
             end)
       
       
+local Section = PL:AddSection({"Local Player | Options"})
 
+local Button = PL:AddButton({"Refresh Dropdown"})
+
+local PlayerSelect = PL:AddDropdown({
+  Name = "Players List",
+  Description = "Select the <font color='rgb(88, 101, 242)'>Number</font>",
+  Options = {"", "", ""},
+  Default = "",
+  Flag = "dropdown teste",
+  Callback = function(value)
+    _G.SelectPly = value
+  end
+})
+
+Button:Callback(function()
+    PlayerSelect:Set(game.Players:GetPlayers())
+    PlayerSelect:Remove(game.Players.LocalPlayer.Name)
+end)
+
+PlayerSelect:Remove(Player.Name)
+PlayerSelect:Select(1)
+
+local Toggle = PL:AddToggle({"Tween To Player", false, function(value)
+    _G.TeleportPly = value
+    pcall(function()
+        if _G.TeleportPly then
+            repeat topos(game:GetService("Players")[_G.SelectPly].Character.HumanoidRootPart.CFrame) wait() until _G.TeleportPly == false
+        end
+        StopTween(_G.TeleportPly)
+    end)
+end})
 ----/// Auto Bartilo Quest
 
 SF:AddToggle({
