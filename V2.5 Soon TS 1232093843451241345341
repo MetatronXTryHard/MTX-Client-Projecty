@@ -80,7 +80,7 @@ local SV = Window:MakeTab({"Server Stats", "ghost"})
 local ST = Window:MakeTab({"Stats", "shield"})
 local Race = Window:MakeTab({"RaceV4", "moon"})
 local RD = Window:MakeTab({"Raid", "electricity"})
-local PL = Window:MakeTab({"Local Player", "flower"})
+local PL = Window:MakeTab({"Local Player", "diamond"})
 local E = Window:MakeTab({"Esp", "eye"})
 local SET = Window:MakeTab({"Sea Events", "Anchor"})
 local W = Window:MakeTab({"Teleport", "map"})
@@ -2334,36 +2334,6 @@ end)
             end)
         end
     end)
-----/// Remove Lag Farm
-spawn(function()
-	while wait() do
-		if _G.KobenHeegeen then
-			game:GetService("ReplicatedStorage").Assets.GUI.DamageCounter.Enabled = false
-		else
-			game:GetService("ReplicatedStorage").Assets.GUI.DamageCounter.Enabled = true
-		end
-	end
-end)
-  spawn(function()
-	while wait() do
-		if _G.Remove_trct then
-			game.Players.LocalPlayer.PlayerGui.Notifications.Enabled = false
-		else
-			game.Players.LocalPlayer.PlayerGui.Notifications.Enabled = true
-		end
-	end
-end)
-spawn(function()
-    game:GetService("RunService").RenderStepped:Connect(function()
-        if _G.RemoveHit == true then
-            game:GetService("ReplicatedStorage").Effect.Container.LevelUp:Destroy()
-            game:GetService("ReplicatedStorage").Util.Sound:Destroy()
-            game:GetService("ReplicatedStorage").Util.Sound.Storage.Other:FindFirstChild("LevelUp_Proxy"):Destroy()
-            game:GetService("ReplicatedStorage").Util.Sound.Storage.Other:FindFirstChild("LevelUp"):Destroy()
-            game:GetService("ReplicatedStorage").Effect.Container.Respawn:Destroy()        
-        end
-    end)
-end)
 local Toggle = S:AddToggle({"Auto Active Race V4", false, function(value)
     _G.AutoAwakeningRace = value
 end})
@@ -6725,7 +6695,7 @@ end)
 
 local Section = SV:AddSection({"Local Server | Options"})
 
-local JobID = SV:AddParagraph({"", ""})  
+local JobID = SV:AddParagraph({"Job ID Check...", ""})  
 
 spawn(function()
     while wait() do
@@ -6749,7 +6719,8 @@ SV:AddTextBox({
 local Button = SV:AddButton({"Join Sever", function(Value)
     game:GetService("TeleportService"):TeleportToPlaceInstance(game.placeId,_G.Job, game.Players.LocalPlayer)
 end})
-local Button = SV:AddButton({"Hop To Lower Player", function(Value)
+local Info = SV:AddParagraph({"Essa Funcao Pode Demorar Um pouco", ""})  
+local Button = SV:AddButton({"Hop To Lower Player ", function(Value)
     local maxplayers, gamelink, goodserver, data_table = math.huge, "https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100"
     if not _G.FailedServerID then _G.FailedServerID = {} end
 
@@ -7527,6 +7498,36 @@ SET:AddToggle({
         end
     end
   end)
+  ----/// Remove Lag Farm
+spawn(function()
+	while wait() do
+		if _G.KobenHeegeen then
+			game:GetService("ReplicatedStorage").Assets.GUI.DamageCounter.Enabled = false
+		else
+			game:GetService("ReplicatedStorage").Assets.GUI.DamageCounter.Enabled = true
+		end
+	end
+end)
+  spawn(function()
+	while wait() do
+		if _G.Remove_trct then
+			game.Players.LocalPlayer.PlayerGui.Notifications.Enabled = false
+		else
+			game.Players.LocalPlayer.PlayerGui.Notifications.Enabled = true
+		end
+	end
+end)
+spawn(function()
+    game:GetService("RunService").RenderStepped:Connect(function()
+        if _G.RemoveHit == true then
+            game:GetService("ReplicatedStorage").Effect.Container.LevelUp:Destroy()
+            game:GetService("ReplicatedStorage").Util.Sound:Destroy()
+            game:GetService("ReplicatedStorage").Util.Sound.Storage.Other:FindFirstChild("LevelUp_Proxy"):Destroy()
+            game:GetService("ReplicatedStorage").Util.Sound.Storage.Other:FindFirstChild("LevelUp"):Destroy()
+            game:GetService("ReplicatedStorage").Effect.Container.Respawn:Destroy()        
+        end
+    end)
+end)
   ----/// Anti Cheat Bypass
     local AntiCheatBypass = M:AddToggle({
     Name = "Anti Cheat Bypass Activated ✅",
