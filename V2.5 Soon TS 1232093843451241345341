@@ -80,7 +80,7 @@ local SV = Window:MakeTab({"Server Stats", "ghost"})
 local ST = Window:MakeTab({"Stats", "shield"})
 local Race = Window:MakeTab({"RaceV4", "moon"})
 local RD = Window:MakeTab({"Raid", "electricity"})
-local PL = Window:MakeTab({"Local Player", "diamond"})
+local PL = Window:MakeTab({"Local Player", "menu"})
 local E = Window:MakeTab({"Esp", "eye"})
 local SET = Window:MakeTab({"Sea Events", "Anchor"})
 local W = Window:MakeTab({"Teleport", "map"})
@@ -6719,8 +6719,16 @@ SV:AddTextBox({
 local Button = SV:AddButton({"Join Sever", function(Value)
     game:GetService("TeleportService"):TeleportToPlaceInstance(game.placeId,_G.Job, game.Players.LocalPlayer)
 end})
-local Info = SV:AddParagraph({"Essa Funcao Pode Demorar Um pouco", ""})  
-local Button = SV:AddButton({"Hop To Lower Player ", function(Value)
+local Info = SV:AddParagraph({"", ""})  
+
+local Button = SV:AddButton({"Rejoin Server", function(Value)
+    game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer)
+end})
+
+local Button = SV:AddButton({"Server Hop", function(Value)
+    Hop()
+end})
+local Button = SV:AddButton({"Hop To Lower Player [Fixing]", function(Value)
     local maxplayers, gamelink, goodserver, data_table = math.huge, "https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100"
     if not _G.FailedServerID then _G.FailedServerID = {} end
 
@@ -7484,7 +7492,6 @@ SET:AddToggle({
   })
   FPS:Callback(function(value)
     _G.Remove_trct = value
-    _G.RemoveHit = value
     _G.KobenHeegeen = value
     setfpscap(9999999)
     local effectContainer = game:GetService("ReplicatedStorage").Effect.Container
@@ -7516,17 +7523,6 @@ end)
 			game.Players.LocalPlayer.PlayerGui.Notifications.Enabled = true
 		end
 	end
-end)
-spawn(function()
-    game:GetService("RunService").RenderStepped:Connect(function()
-        if _G.RemoveHit == true then
-            game:GetService("ReplicatedStorage").Effect.Container.LevelUp:Destroy()
-            game:GetService("ReplicatedStorage").Util.Sound:Destroy()
-            game:GetService("ReplicatedStorage").Util.Sound.Storage.Other:FindFirstChild("LevelUp_Proxy"):Destroy()
-            game:GetService("ReplicatedStorage").Util.Sound.Storage.Other:FindFirstChild("LevelUp"):Destroy()
-            game:GetService("ReplicatedStorage").Effect.Container.Respawn:Destroy()        
-        end
-    end)
 end)
   ----/// Anti Cheat Bypass
     local AntiCheatBypass = M:AddToggle({
