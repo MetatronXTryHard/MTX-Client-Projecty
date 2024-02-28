@@ -80,7 +80,7 @@ local SV = Window:MakeTab({"Server Stats", "ghost"})
 local ST = Window:MakeTab({"Stats", "shield"})
 local Race = Window:MakeTab({"RaceV4", "moon"})
 local RD = Window:MakeTab({"Raid", "electricity"})
-local PL = Window:MakeTab({"Local Player", "feather"})
+local PL = Window:MakeTab({"Local Player", "flower"})
 local E = Window:MakeTab({"Esp", "eye"})
 local SET = Window:MakeTab({"Sea Events", "Anchor"})
 local W = Window:MakeTab({"Teleport", "map"})
@@ -6723,12 +6723,14 @@ spawn(function()
     end
 end)
 
+local Section = SV:AddSection({"Local Server | Options"})
+
 local JobID = SV:AddParagraph({"", ""})  
 
 spawn(function()
     while wait() do
         pcall(function()
-            JobAiDee:Set("Job ID :".." "..game.JobId)
+            JobID:Set("Job ID :".." "..game.JobId)
         end)
     end
 end)
@@ -6748,50 +6750,42 @@ local Button = SV:AddButton({"Join Sever", function(Value)
     game:GetService("TeleportService"):TeleportToPlaceInstance(game.placeId,_G.Job, game.Players.LocalPlayer)
 end})
 local Button = SV:AddButton({"Hop To Lower Player", function(Value)
-    getgenv().AutoTeleport = true
-    getgenv().DontTeleportTheSameNumber = true 
-    getgenv().CopytoClipboard = false
-    if not game:IsLoaded() then
-        print("Game is loading waiting...")
+    local maxplayers, gamelink, goodserver, data_table = math.huge, "https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100"
+    if not _G.FailedServerID then _G.FailedServerID = {} end
+
+    local function serversearch()
+        data_table = game:GetService"HttpService":JSONDecode(game:HttpGetAsync(gamelink))
+        for _, v in pairs(data_table.data) do
+            pcall(function()
+                if type(v) == "table" and v.id and v.playing and tonumber(maxplayers) > tonumber(v.playing) and not table.find(_G.FailedServerID, v.id) then
+                    maxplayers = v.playing
+                    goodserver = v.id
+                end
+            end)
+        end
     end
-    local maxplayers = math.huge
-    local serversmaxplayer;
-    local goodserver;
-    local gamelink = "https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100" 
-    function serversearch()
-        for _, v in pairs(game:GetService("HttpService"):JSONDecode(game:HttpGetAsync(gamelink)).data) do
-            if type(v) == "table" and v.playing ~= nil and maxplayers > v.playing then
-                serversmaxplayer = v.maxPlayers
-                maxplayers = v.playing
-                goodserver = v.id
-            end
-        end       
-    end
+
     function getservers()
-        serversearch()
-        for i,v in pairs(game:GetService("HttpService"):JSONDecode(game:HttpGetAsync(gamelink))) do
+        pcall(serversearch)
+        for i, v in pairs(data_table) do
             if i == "nextPageCursor" then
-                if gamelink:find("&cursor=") then
-                    local a = gamelink:find("&cursor=")
+                if gamelink:find"&cursor=" then
+                    local a = gamelink:find"&cursor="
                     local b = gamelink:sub(a)
                     gamelink = gamelink:gsub(b, "")
                 end
-                gamelink = gamelink .. "&cursor=" ..v
-                getservers()
+                gamelink = gamelink .. "&cursor=" .. v
+                pcall(getservers)
             end
         end
-    end 
-    getservers()
-    if AutoTeleport then
-        if DontTeleportTheSameNumber then 
-            if #game:GetService("Players"):GetPlayers() - 4  == maxplayers then
-                return warn("It has same number of players (except you)")
-            elseif goodserver == game.JobId then
-                return warn("Your current server is the most empty server atm") 
-            end
-        end
-        game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, goodserver)
     end
+
+    pcall(getservers)
+    wait()
+    if goodserver == game.JobId or maxplayers == #game:GetService"Players":GetChildren() - 1 then
+    end
+    table.insert(_G.FailedServerID, goodserver)
+    game:GetService"TeleportService":TeleportToPlaceInstance(game.PlaceId, goodserver)
 end})
 ----/// Misc
 local Section = M:AddSection({"Misc | Options"})
