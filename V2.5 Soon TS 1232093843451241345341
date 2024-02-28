@@ -2823,7 +2823,7 @@ end)
       
 local Section = PL:AddSection({"Local Player | Options"})
 
-local Button = PL:AddButton({"Refresh Dropdown"})
+
 
 local PlayerSelect = PL:AddDropdown({
   Name = "Players List",
@@ -2835,16 +2835,13 @@ local PlayerSelect = PL:AddDropdown({
     _G.SelectPly = value
   end
 })
-
+local Button = PL:AddButton({"Refresh Dropdown"})
 Button:Callback(function()
     PlayerSelect:Set(game.Players:GetPlayers())
     PlayerSelect:Remove(game.Players.LocalPlayer.Name)
 end)
-local Teste = PL:AddButton({"Refresh Dropdown"})
-Teste:Callback(function()
-    PlayerSelect:Remove(Player.Name)
-    PlayerSelect:Select(1)
-end)
+
+PlayerSelect:Select(1)
 
 local GoToPlayer = PL:AddToggle({"Tween To Player", false, function(value)
     _G.TeleportPly = value
