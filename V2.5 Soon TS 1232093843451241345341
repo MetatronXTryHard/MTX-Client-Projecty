@@ -248,321 +248,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 --[[
     MTX Client update
 
@@ -689,7 +374,7 @@ end)
 F:AddDropdown({
   Name = "Select Farm Mode",
   Description = "",
-  Options = {"Auto Farm Level", "No Quest", "Near Farm", "Fast Mode"},
+  Options = {"Auto Farm Level", "No Quest", "Near Farm", "Fast Mode [Beta]"},
   Default = "Auto Farm Level",
   Callback = function(value)
     _G.FarmMode = value
@@ -859,7 +544,7 @@ end)
 spawn(function()
     while wait() do
         if FarmMode then
-            if FarmMode == "Fast Mode" and _G.AutoFarm then
+            if FarmMode == "Fast Mode [Beta]" and _G.AutoFarm then
 				pcall(function()
 					if game:GetService("Players").LocalPlayer.Data.SpawnPoint.Value == SPAWNPOINT then
 						if not string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, NameMon) then
@@ -1793,6 +1478,141 @@ end
 if World2 or World3 then
 local Section = F:AddSection({"Others Farm | Options"})
 end
+
+local Button = F:AddButton({"Refresh Boss List", function(Value)
+    pcall(function()UpdateBossList()end)
+end})
+
+local AutoBossSelect = F:AddDropdown({
+    Name = "Select Boss",
+    Description = "",
+    Options = {""},
+    Default = "",
+    Flag = "MainFarm",
+    Callback = function(Value)
+        getgenv().BossSelected = Value
+    end
+  })
+
+  function UpdateBossList()
+    local NewOptions = {}
+    for ___,NameBoss in pairs(BossListT) do
+      if VerifyNPC(NameBoss) then
+        table.insert(NewOptions, NameBoss)
+      end
+    end
+    UpdateDropdown(BossList, NewOptions)
+  end
+  UpdateBossList()
+
+local AutoFarmBoss = F:AddToggle({"Auto Farm Boss", false, function(Value)
+    getgenv().AutoFarmBossSelected = Value
+    AutoFarmBossSelected()
+end})
+local function AutoKillAllBoss()
+    local Enemies = workspace:WaitForChild("Enemies", 9e9)
+    while getgenv().AutoKillAllBoss do task.wait()
+      local Bosses = {}
+      for ___,BossName in pairs(BossListT) do
+        if VerifyNPC(BossName) then
+          table.insert(Bosses, BossName)
+        end
+      end
+      
+      local Boss1 = Enemies:FindFirstChild(Bosses[1] or "")
+      local Boss2 = game:GetService("ReplicatedStorage"):FindFirstChild(Bosses[1] or "")
+      
+      if Boss1 then
+        PlayerTP(Boss1.HumanoidRootPart.CFrame + getgenv().FarmPos)
+        pcall(function()AutoHaki()EquipTool()BringNPC(Boss1)PlayerClick()end)
+      elseif Boss2 then
+        PlayerTP(Boss2.HumanoidRootPart.CFrame + getgenv().FarmPos)
+        pcall(function()AutoHaki()EquipTool()BringNPC(Boss2)PlayerClick()end)
+      end
+    end
+  end
+spawn(function()
+	while wait() do
+		if _G.Auto_Farm_Boss then
+			pcall(function()
+				CheckBossQuest()
+				if MsBoss == "Soul Reaper [Lv. 2100] [Raid Boss]" or MsBoss == "Longma [Lv. 2000] [Boss]" or MsBoss == "Don Swan [Lv. 1000] [Boss]" or MsBoss == "Cursed Captain [Lv. 1325] [Raid Boss]" or MsBoss == "Order [Lv. 1250] [Raid Boss]" or MsBoss == "rip_indra True Form [Lv. 5000] [Raid Boss]" then
+					if game:GetService("Workspace").Enemies:FindFirstChild(MsBoss) then
+						for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+							if v.Name == MsBoss then
+								repeat wait()
+									EquipWeapon(_G.Select_Weapon)
+									AutoHaki()
+									topos(v.HumanoidRootPart.CFrame * MethodFarm)
+									v.HumanoidRootPart.CanCollide = false
+									v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
+									game:GetService'VirtualUser':CaptureController()
+									game:GetService'VirtualUser':Button1Down(Vector2.new(1280, 672))
+								until _G.Auto_Farm_Boss == false or not v.Parent or v.Humanoid.Health <= 0
+							end
+						end
+					else
+						topos(CFrameBoss)
+					end
+				else
+					if _G.Auto_Quest_Boss then
+						CheckBossQuest()
+						if not string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, NameBoss) then
+                            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
+                        end
+						if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false then
+							repeat wait() topos(CFrameQuestBoss) until (CFrameQuestBoss.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 3 or not _G.Auto_Farm_Boss
+							if (CFrameQuestBoss.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 4 then
+								wait(1.1)
+								game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest", NameQuestBoss, LevelQuestBoss)
+							end
+						elseif game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
+							if game:GetService("Workspace").Enemies:FindFirstChild(MsBoss) then
+								for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+									if v.Name == MsBoss then
+										repeat wait()
+											if string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, NameBoss) then
+												EquipWeapon(_G.Select_Weapon)
+												AutoHaki()
+												topos(v.HumanoidRootPart.CFrame * MethodFarm)
+												v.HumanoidRootPart.CanCollide = false
+												v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
+												game:GetService'VirtualUser':CaptureController()
+												game:GetService'VirtualUser':Button1Down(Vector2.new(1280, 672))									
+											else
+												game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
+											end
+										until _G.Auto_Farm_Boss == false or not v.Parent or v.Humanoid.Health <= 0
+									end
+								end
+							else
+								topos(CFrameBoss)
+							end
+						end
+					else
+						if game:GetService("Workspace").Enemies:FindFirstChild(MsBoss) then
+							for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+								if v.Name == MsBoss then
+									repeat wait()
+										EquipWeapon(_G.Select_Weapon)
+										AutoHaki()
+										topos(v.HumanoidRootPart.CFrame * MethodFarm)
+										v.HumanoidRootPart.CanCollide = false
+										v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
+										game:GetService'VirtualUser':CaptureController()
+                                        game:GetService'VirtualUser':Button1Down(Vector2.new(1280, 672))										
+									until _G.Auto_Farm_Boss == false or not v.Parent or v.Humanoid.Health <= 0
+								end
+							end
+						else
+							topos(CFrameBoss)
+						end
+					end
+				end
+			end)
+		end
+	end
+end)
 local AutoAllBoss = F:AddToggle({
     Name = "Auto Farm All Boss",
     Default = false
