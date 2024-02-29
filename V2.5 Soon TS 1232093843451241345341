@@ -1248,7 +1248,94 @@ if World2 or World3 then
 local Section = F:AddSection({"Others Farm | Options"})
 end
 
-local BossListT = {
+local function VerifyEnemie(enemie)
+    local Enemies = workspace:WaitForChild("Enemies", 9e9)
+    return Enemies and Enemies:FindFirstChild(enemie)
+  end
+
+  local function BringNPC(enemie)
+    local Enemies = workspace:WaitForChild("Enemies", 20)
+    for _,v in pairs(Enemies:GetChildren()) do
+      if v.Name == enemie.Name then
+        local args1 = v and v:FindFirstChild("HumanoidRootPart")
+        local args2 = enemie and enemie:FindFirstChild("HumanoidRootPart")
+        local args3 = enemie and enemie:FindFirstChild("Humanoid")
+        local args4  = v and v:FindFirstChild("Humanoid")
+        if args1 and args2 and (args1.Position - args2.Position).Magnitude <= 250 then
+                  args1.CFrame = args2.CFrame
+                  args1.CanCollide = false
+                  args1.Size = Vector3.new(50, 50, 50)
+                  if args4:FindFirstChild("Animator") then
+                      args4.Animator:Destroy()
+                  end
+                  if args4 and args4.Health <= 0 then
+                    v:Destroy()
+                  end
+                  sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius",  math.huge)
+        end
+      end
+    end
+  end
+
+  function AutoHaki()
+    if getgenv().AutoHaki and not Player.Character:FindFirstChild("HasBuso") then
+      game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Buso")
+    end
+  end
+  
+  local function EquipTool()
+    local backpack = Player.Backpack:GetChildren()
+    local plrChar = Player.Character
+    for _,v in pairs(backpack) do
+      if v.ToolTip == getgenv().FarmMethod then
+        v.Parent = plrChar
+      end
+    end
+  end
+
+  local time = tick()
+local function PlayerClick()
+  task.spawn(function()
+    pcall(function()
+      local CF = debug.getupvalues(require(game.Players.LocalPlayer.PlayerScripts.CombatFramework))[2]
+      CF.activeController.attacking = false
+      CF.activeController.timeToNextAttack = 0
+      CF.activeController.increment = 3
+      CF.activeController.hitboxMagnitude = 100
+      CF.activeController.blocking = false
+      CF.activeController.timeToNextBlock = 0
+      CF.activeController.focusStart = 0
+      CF.activeController.humanoid.AutoRotate = true
+    end)
+    if (tick() - time) >= getgenv().AutoClickDelay or 0.1 then
+      if getgenv().AutoClick then
+        game:GetService("VirtualUser"):ClickButton1(Vector2.new(math.huge, math.huge))
+      end
+      time = tick()
+    end
+  end)
+end
+
+local function TweenNPCSpawn(pos)
+    if pos then
+      local Enemies = workspace:WaitForChild("Enemies", 20)
+      repeat task.wait()
+        for _,v in pairs(pos) do
+          if not getgenv().AutoFarm_Level or Enemies:FindFirstChild(Quest[3]) then
+            break
+          end
+          if block then
+            local tween = game:GetService("TweenService"):Create(block,
+            TweenInfo.new((block.Position - v.p).Magnitude / 200, Enum.EasingStyle.Linear, Enum.EasingDirection.Out),
+            {CFrame = v})tween:Play()tween.Completed:Wait()
+          end
+        end
+      until not getgenv().AutoFarm_Level or Enemies:FindFirstChild(Quest[3])
+      return
+    end
+  end
+
+  local BossListT = {
     -- Sea 1
     "The Saw",
     "Saber Expert",
@@ -1313,7 +1400,7 @@ local BossListT = {
       end
     end
   end
-  
+
 
 spawn(function()
 	while wait() do
@@ -5709,6 +5796,8 @@ local Toggle = DF:AddToggle({"Auto Store Fruit", false, function(value)
         return "Dragon-Dragon"
       elseif Fruit == "Leopard Fruit" then
         return "Leopard-Leopard"
+    elseif Fruit == "Kitsune Fruit" then
+        return "Kitsune-Kitsune"
       end
     end
     
