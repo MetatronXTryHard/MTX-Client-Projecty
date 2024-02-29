@@ -1484,6 +1484,8 @@ spawn(function()
 		end
 	end
 end)
+local Section = F:AddSection("Boss")
+local Paragraph = F:AddParagraph({"", ""})
 local AutoAllBoss = F:AddToggle({
     Name = "Auto Farm All Boss",
     Default = false
@@ -1522,7 +1524,8 @@ local AutoAllBoss = F:AddToggle({
         end
     end
 end)
-
+local Section = F:AddSection("Chest")
+local Paragraph = F:AddParagraph({"", ""})
   local Toggle = F:AddToggle({"Auto Chest Tween", false, function(vu)
 	Grab_Chest = vu
     StopTween(Grab_Chest)
