@@ -2870,24 +2870,9 @@ spawn(function()
 	end
 end)
 
-local Spectate = PL:AddToggle({"Aimbot Skill Fov", false, function(value)
+local Spectate = PL:AddToggle({"Aimbot Skill", false, function(value)
     _G.Aimbot_Skill_Fov = value
 end})
-local Slider = PL:AddSlider({
-    Name = "Number of points",
-    MinValue = 1,
-    MaxValue = 1000,
-    Default = 200,
-    Increase = 1,
-    Callback = function(value)
-        _G.Select_Size_Fov = value
-        return "Size Fov : " .. tostring(value)
-
-  })
-local Spectate = PL:AddToggle({"Show Fov", false, function(value)
-    _G.Show_Fov = value
-end})
-
 
 local lp = game:GetService('Players').LocalPlayer
 local mouse = lp:GetMouse()
