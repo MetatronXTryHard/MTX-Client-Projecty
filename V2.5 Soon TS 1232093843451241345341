@@ -1486,34 +1486,38 @@ spawn(function()
 end)
 local Section = F:AddSection("Boss")
 
-local BossList = F:AddDropdown({
+local Boss = {}
+    
+    for i, v in pairs(game:GetService("ReplicatedStorage"):GetChildren()) do
+        if string.find(v.Name, "Boss") then
+            if v.Name == "Ice Admiral [Lv. 700] [Boss]" then
+                else
+                table.insert(Boss, v.Name)
+            end
+        end
+    end
+
+local BossName = F:AddDropdown({
     Name = "Select Boss",
     Description = "",
     Options = {""},
     Default = "",
-    Flag = "",
-    Callback = function(Value)
-        getgenv().BossSelected = Value
+    Flag = "Boss",
+    Callback = function(value)
+        _G.Select_Boss = value
     end
   })
 
-  local Button = F:AddButton({"Refresh Boss List", function()
-    pcall(function()
-        UpdateBossList()
-    end)
-  end})
 
-
-  function UpdateBossList()
-    local NewOptions = {}
-    for ___,NameBoss in pairs(BossListT) do
-      if VerifyNPC(NameBoss) then
-        table.insert(NewOptions, NameBoss)
-      end
+  local Button = F:AddButton({"Refresh Boss", function(Value)
+    BossName:Remove()
+    for i, v in pairs(game:GetService("ReplicatedStorage"):GetChildren()) do
+    if string.find(v.Name, "Boss") then
+        BossName:Set(v.Name)
     end
-    BossList:Set(NewOptions)
-  end
-  BossList:Set()
+end
+end})
+
 
 local AutoAllBoss = F:AddToggle({
     Name = "Auto Farm All Boss",
