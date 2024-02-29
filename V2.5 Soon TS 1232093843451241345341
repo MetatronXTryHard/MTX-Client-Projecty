@@ -1498,7 +1498,9 @@ local BossList = F:AddDropdown({
   })
 
   local Button = F:AddButton({"Refresh Boss List", function()
+    pcall(function()
         UpdateBossList()
+    end)
   end})
 
 
@@ -1509,9 +1511,9 @@ local BossList = F:AddDropdown({
         table.insert(NewOptions, NameBoss)
       end
     end
-    UpdateDropdown(BossList, NewOptions)
+    BossList:Set(BossList, NewOptions)
   end
-  UpdateBossList()
+  BossList:Set()
 
 local AutoAllBoss = F:AddToggle({
     Name = "Auto Farm All Boss",
