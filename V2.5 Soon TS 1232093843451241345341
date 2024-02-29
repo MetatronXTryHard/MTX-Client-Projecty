@@ -1498,7 +1498,7 @@ local BossList = F:AddDropdown({
   })
 
   local Button = F:AddButton({"Refresh Boss List", function()
-    pcall(function()UpdateBossList()end)
+        UpdateBossList()
   end})
 
 
