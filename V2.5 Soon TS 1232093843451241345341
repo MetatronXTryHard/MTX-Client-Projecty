@@ -2852,6 +2852,30 @@ local GoToPlayer = PL:AddToggle({"Tween To Player", false, function(value)
         StopTween(_G.TeleportPly)
     end)
 end})
+
+local Spectate = PL:AddToggle({"Spectate Player", false, function(value)
+    _G.Spectate_Player = value
+end})
+spawn(function()
+	while wait() do
+		if _G.Spectate_Player then
+			pcall(function()
+				if game.Players:FindFirstChild(_G.SelectPly) then
+					game.Workspace.Camera.CameraSubject = game.Players:FindFirstChild(_G.SelectPly).Character.Humanoid
+				end
+			end)
+		else
+			game.Workspace.Camera.CameraSubject = game.Players.LocalPlayer.Character.Humanoid
+		end
+	end
+end)
+
+local SetPirates = PL:AddButton({"Set Pirate Team", function(Value)
+    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetTeam","Pirates") 
+end})
+local SetPirates = PL:AddButton({"Set Marine Team", function(Value)
+    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetTeam","Marines") 
+end})
 ----/// Auto Bartilo Quest
 
 SF:AddToggle({
@@ -7515,28 +7539,7 @@ SET:AddToggle({
   Bring:Callback(function(value)
     _G.BringMonster = value
   end)
-  M:AddDropdown({
-    Name = "Team Set",
-    Description = "",
-    Options = {"Marine", "Pirate"},
-    Default = "Marine",
-    Callback = function(value)
-      getgenv().SetTeam = value
-    end
-  })
-  spawn(function()
-      while wait(.1) do
-          if getgenv().SetTeam then
-              pcall(function()
-                  if getgenv().SetTeam == "Marine" then
-                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetTeam","Marines") 
-                 elseif getgenv().SetTeam == "Pirate" then
-                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetTeam","Pirates") 
-                  end
-              end)
-          end
-      end
-  end)
+
   --lag fix
   local FPS = M:AddToggle({
     Name = "+FPS Lag Reduze",
