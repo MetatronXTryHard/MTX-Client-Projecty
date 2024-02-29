@@ -1248,33 +1248,50 @@ if World2 or World3 then
 local Section = F:AddSection({"Others Farm | Options"})
 end
 
-local BossList = F:AddDropdown({
-    Name = "Select Boss",
-    Description = "",
-    Options = {""},
-    Default = "",
-    Flag = "MainFarm",
-    Callback = function(Value)
-        getgenv().BossSelected = Value
-    end
-  })
-
-  function UpdateBossList()
-    local NewOptions = {}
-    for ___,NameBoss in pairs(BossListT) do
-      if VerifyNPC(NameBoss) then
-        table.insert(NewOptions, NameBoss)
+local BossListT = {
+    -- Sea 1
+    "The Saw",
+    "Saber Expert",
+    "The Gorilla King",
+    "Bobby",
+    "Yeti",
+    "Vice Admiral",
+    "Warden",
+    "Chief Warden",
+    "Swan",
+    "Magma Admiral",
+    "Wysper",
+    "Thunder God",
+    "CyborgCombat",
+    "Fishman Lord",
+    -- Sea 2
+    "Don Swan",
+    "Smoke Admiral",
+    -- Sea 3
+    "Stone",
+    "Beautiful Pirate",
+    "Island Empress",
+    "Kilo Admiral",
+    "Captain Elephant",
+    "Cake Queen"
+  }
+  local function AutoFarmBossSelected()
+    local Enemies = workspace:WaitForChild("Enemies", 9e9)
+    while getgenv().AutoFarmBossSelected do task.wait()
+      local Boss1 = Enemies:FindFirstChild(getgenv().BossSelected or "")
+      local Boss2 = game:GetService("ReplicatedStorage"):FindFirstChild(getgenv().BossSelected or "")
+      
+      if Boss1 then
+        PlayerTP(Boss1.HumanoidRootPart.CFrame + getgenv().FarmPos)
+        pcall(function()AutoHaki()EquipTool()BringNPC(Boss1)PlayerClick()end)
+      elseif Boss2 then
+        PlayerTP(Boss2.HumanoidRootPart.CFrame + getgenv().FarmPos)
+        pcall(function()AutoHaki()EquipTool()BringNPC(Boss2)PlayerClick()end)
       end
     end
-    UpdateDropdown(BossList, NewOptions)
   end
-  UpdateBossList()
-
-local AutoFarmBoss = F:AddToggle({"Auto Farm Boss", false, function(Value)
-    getgenv().AutoFarmBossSelected = Value
-    AutoFarmBossSelected()
-end})
-local function AutoKillAllBoss()
+  
+  local function AutoKillAllBoss()
     local Enemies = workspace:WaitForChild("Enemies", 9e9)
     while getgenv().AutoKillAllBoss do task.wait()
       local Bosses = {}
@@ -1296,6 +1313,8 @@ local function AutoKillAllBoss()
       end
     end
   end
+  
+
 spawn(function()
 	while wait() do
 		if _G.Auto_Farm_Boss then
