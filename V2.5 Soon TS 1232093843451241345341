@@ -1508,7 +1508,7 @@ local BossList = F:AddDropdown({
     local NewOptions = {}
     for ___,NameBoss in pairs(BossListT) do
       if VerifyNPC(NameBoss) then
-        table.insert(NameBoss)
+        table.insert(NewOptions, NameBoss)
       end
     end
     BossList:Set(NewOptions)
