@@ -2881,8 +2881,8 @@ local Slider = PL:AddSlider({
     Increase = 1,
     Callback = function(value)
         _G.Select_Size_Fov = value
-        return "Size Fov : " .. tostring(value)v
-    end
+        return "Size Fov : " .. tostring(value)
+
   })
 local Spectate = PL:AddToggle({"Show Fov", false, function(value)
     _G.Show_Fov = value
