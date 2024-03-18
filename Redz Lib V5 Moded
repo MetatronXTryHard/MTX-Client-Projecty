@@ -146,7 +146,7 @@ local function CreateTween(Configs)
   local Tween = TweenService:Create(Instance, TweenInfo, {[Prop] = NewVal})
   Tween:Play()
   if TweenWait then
-    
+    Tween.Completed:Wait()
   end
   return Tween
 end
